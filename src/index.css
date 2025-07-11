@@ -25,8 +25,8 @@
     --muted: 220 8% 10%;              /* Muted dark gray */
     --muted-foreground: 210 15% 70%;
 
-    --accent: 120 100% 50%;            /* Neon green accent */
-    --accent-foreground: 220 8% 6%;
+    --accent: 220 8% 15%;             /* Subtle gray accent */
+    --accent-foreground: 210 20% 95%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
@@ -38,10 +38,10 @@
     --radius: 0.75rem;
 
     /* Cybersecurity Theme Colors */
-    --cyber-blue: 195 100% 50%;        /* Electric blue */
-    --cyber-green: 120 100% 50%;       /* Neon green */
-    --cyber-purple: 270 100% 60%;      /* Electric purple */
-    --cyber-red: 0 100% 50%;           /* Alert red */
+    --cyber-blue: 195 100% 45%;        /* Electric blue (slightly muted) */
+    --cyber-green: 120 80% 40%;        /* Reduced green usage */
+    --cyber-purple: 270 60% 50%;       /* Electric purple */
+    --cyber-red: 0 85% 50%;            /* Alert red */
     
     /* Gray Scale */
     --gray-50: 220 8% 95%;
@@ -178,10 +178,12 @@
   .snap-section {
     height: 100vh;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    width: 100%;
   }
 
   /* Cyber grid background */
@@ -244,6 +246,10 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+  }
+  
+  .snap-mandatory {
+    scroll-snap-type: y mandatory;
   }
 
   .snap-y::-webkit-scrollbar {

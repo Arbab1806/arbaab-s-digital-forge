@@ -95,13 +95,13 @@ const Index = () => {
 
       {/* Main Portfolio Content */}
       {showContent && (
-        <main className="snap-y overflow-y-auto h-screen">
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
-          <SocialSection />
+        <main className="snap-y snap-mandatory overflow-y-scroll h-screen">
+          <div className="snap-section"><HeroSection /></div>
+          <div className="snap-section"><AboutSection /></div>
+          <div className="snap-section"><SkillsSection /></div>
+          <div className="snap-section"><ProjectsSection /></div>
+          <div className="snap-section"><ContactSection /></div>
+          <div className="snap-section"><SocialSection /></div>
         </main>
       )}
     </>

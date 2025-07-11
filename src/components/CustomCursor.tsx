@@ -6,26 +6,39 @@ const CustomCursor = () => {
   const [cursorVariant, setCursorVariant] = useState('default');
 
   useEffect(() => {
+    // Use RAF for smoother cursor movement
+    let animationId: number;
+    
     const mouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      
+      animationId = requestAnimationFrame(() => {
+        setMousePosition({
+          x: e.clientX,
+          y: e.clientY
+        });
       });
     };
 
     const mouseEnter = () => setCursorVariant('hover');
     const mouseLeave = () => setCursorVariant('default');
 
-    window.addEventListener('mousemove', mouseMove);
+    // Use passive event listeners for better performance
+    window.addEventListener('mousemove', mouseMove, { passive: true });
     
     // Add hover effects for interactive elements
     const interactiveElements = document.querySelectorAll('button, a, [role="button"]');
     interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', mouseEnter);
-      el.addEventListener('mouseleave', mouseLeave);
+      el.addEventListener('mouseenter', mouseEnter, { passive: true });
+      el.addEventListener('mouseleave', mouseLeave, { passive: true });
     });
 
     return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
       window.removeEventListener('mousemove', mouseMove);
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', mouseEnter);
@@ -53,10 +66,9 @@ const CustomCursor = () => {
       variants={variants}
       animate={cursorVariant}
       transition={{
-        type: "spring",
-        stiffness: 500,
-        damping: 28,
-        mass: 0.5
+        type: "tween",
+        duration: 0.02,
+        ease: "linear"
       }}
     >
       <div className="relative w-8 h-8">

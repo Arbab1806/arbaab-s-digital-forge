@@ -10,7 +10,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="snap-section relative overflow-hidden" id="hero">
+    <section className="h-screen w-full relative overflow-hidden" id="hero">
       {/* Background grid */}
       <div className="cyber-grid" />
       
@@ -74,7 +74,7 @@ const HeroSection = () => {
             I'm a{' '}
             <span className="text-cyber-blue font-semibold">Penetration Tester in Training</span>
             {' '}&{' '}
-            <span className="text-cyber-green font-semibold">Remote Freelancer</span>
+            <span className="text-primary font-semibold">Remote Freelancer</span>
           </motion.p>
 
           {/* CTA Button */}

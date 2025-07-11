@@ -38,7 +38,7 @@ const AboutSection = () => {
       icon: Shield,
       title: "Cybersecurity Training",
       description: "Comprehensive cybersecurity course from NAVTAC - Learning industry best practices",
-      color: "cyber-green"
+      color: "cyber-blue"
     },
     {
       icon: Briefcase,
@@ -55,7 +55,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="snap-section relative" id="about" ref={ref}>
+    <section className="h-screen w-full relative" id="about" ref={ref}>
       {/* Background elements */}
       <div className="cyber-grid opacity-20" />
       
@@ -133,7 +133,7 @@ const AboutSection = () => {
           className="mt-12 text-center"
         >
           <div className="flex flex-wrap justify-center gap-3">
-            <Badge variant="outline" className="px-4 py-2 text-cyber-green border-cyber-green/50 bg-cyber-green/10">
+            <Badge variant="outline" className="px-4 py-2 text-primary border-primary/50 bg-primary/10">
               🎓 Currently Learning
             </Badge>
             <Badge variant="outline" className="px-4 py-2 text-cyber-blue border-cyber-blue/50 bg-cyber-blue/10">

@@ -38,7 +38,7 @@ const ContactSection = () => {
       label: "WhatsApp",
       value: "+92 370 7332494",
       href: "https://wa.me/923707332494",
-      color: "cyber-green"
+      color: "cyber-blue"
     },
     {
       icon: MapPin,
@@ -87,7 +87,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="snap-section relative" id="contact" ref={ref}>
+    <section className="h-screen w-full relative" id="contact" ref={ref}>
       {/* Background */}
       <div className="cyber-grid opacity-10" />
       
@@ -168,13 +168,13 @@ const ContactSection = () => {
 
             {/* Availability Status */}
             <motion.div variants={itemVariants}>
-              <Card className="p-6 bg-card/20 border-cyber-green/50">
+              <Card className="p-6 bg-card/20 border-primary/50">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-3 h-3 bg-cyber-green rounded-full animate-pulse" />
-                  <span className="text-cyber-green font-semibold">Available for Work</span>
+                  <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+                  <span className="text-primary font-semibold">Available for Work</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-cyber-green/10 text-cyber-green border-cyber-green/30">
+                  <Badge className="bg-primary/10 text-primary border-primary/30">
                     Remote Projects
                   </Badge>
                   <Badge className="bg-cyber-blue/10 text-cyber-blue border-cyber-blue/30">

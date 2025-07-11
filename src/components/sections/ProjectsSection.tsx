@@ -96,14 +96,14 @@ const ProjectsSection = () => {
       case 'Web Development':
         return 'cyber-blue';
       case 'Automation':
-        return 'cyber-green';
+        return 'cyber-purple';
       default:
         return 'cyber-purple';
     }
   };
 
   return (
-    <section className="snap-section relative" id="projects" ref={ref}>
+    <section className="h-screen w-full relative" id="projects" ref={ref}>
       {/* Background */}
       <div className="cyber-grid opacity-10" />
       
@@ -143,7 +143,7 @@ const ProjectsSection = () => {
                 <Card className="overflow-hidden bg-card/30 backdrop-blur-sm border-gray-700 hover:border-cyber-blue transition-all duration-500 animated-border h-full">
                   {/* Project Image */}
                   <div className="relative h-48 bg-gray-800 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/20 to-cyber-green/20" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <CategoryIcon className={`w-16 h-16 text-${categoryColor} opacity-60`} />
                     </div>

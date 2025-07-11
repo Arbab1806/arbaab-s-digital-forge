@@ -46,7 +46,7 @@ const SkillsSection = () => {
     {
       title: "Development & Automation",
       icon: Code,
-      color: "cyber-green",
+      color: "cyber-blue",
       skills: [
         { name: "Frontend Development", level: 85, description: "React, TypeScript, Tailwind CSS" },
         { name: "Excel Automation", level: 90, description: "VBA, Power Query, advanced formulas" },
@@ -84,7 +84,7 @@ const SkillsSection = () => {
   };
 
   return (
-    <section className="snap-section relative" id="skills" ref={ref}>
+    <section className="h-screen w-full relative" id="skills" ref={ref}>
       {/* Background */}
       <div className="cyber-grid opacity-10" />
       
@@ -181,7 +181,7 @@ const SkillsSection = () => {
           {[
             { icon: Bug, label: "Vulnerability Research", color: "cyber-red" },
             { icon: Search, label: "Security Analysis", color: "cyber-blue" },
-            { icon: Server, label: "System Hardening", color: "cyber-green" },
+            { icon: Server, label: "System Hardening", color: "cyber-purple" },
             { icon: FileSpreadsheet, label: "Data Processing", color: "cyber-purple" }
           ].map((item, index) => (
             <motion.div

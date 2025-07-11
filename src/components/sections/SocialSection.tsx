@@ -26,8 +26,8 @@ const SocialSection = () => {
       icon: Linkedin,
       url: "https://linkedin.com/in/arbaab-hussain",
       description: "Connect with me professionally and see my latest achievements",
-      color: "cyber-green",
-      bgGradient: "from-cyber-green/20 to-cyber-purple/20",
+      color: "cyber-purple",
+      bgGradient: "from-cyber-purple/20 to-cyber-blue/20",
       stats: "Professional Network"
     }
   ];
@@ -49,7 +49,7 @@ const SocialSection = () => {
   };
 
   return (
-    <section className="snap-section relative" id="social" ref={ref}>
+    <section className="h-screen w-full relative" id="social" ref={ref}>
       {/* Background */}
       <div className="cyber-grid opacity-10" />
       
@@ -180,7 +180,7 @@ const SocialSection = () => {
               <Button
                 asChild
                 variant="outline"
-                className="border-cyber-green/50 text-cyber-green hover:bg-cyber-green/10"
+                className="border-primary/50 text-primary hover:bg-primary/10"
               >
                 <a href="https://wa.me/923707332494" target="_blank" rel="noopener noreferrer">
                   📱 WhatsApp
