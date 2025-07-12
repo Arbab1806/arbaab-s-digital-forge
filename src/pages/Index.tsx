@@ -46,19 +46,38 @@ const Index = () => {
     setShowContent(true);
   };
 
-  // Smooth snap scrolling between sections
+  // Book-style page scrolling with no overlap
   useEffect(() => {
     if (showContent) {
       const style = document.createElement('style');
       style.textContent = `
         html {
-          scroll-behavior: smooth;
+          scroll-behavior: auto;
           scroll-snap-type: y mandatory;
+          scroll-padding-top: 0px;
         }
         
         body {
           overflow-y: auto;
           height: 100vh;
+        }
+        
+        .snap-container {
+          scroll-snap-type: y mandatory;
+          overflow-y: scroll;
+          height: 100vh;
+          scroll-behavior: auto;
+        }
+        
+        .snap-page {
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+          height: 100vh;
+          width: 100vw;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       `;
       document.head.appendChild(style);
@@ -95,13 +114,13 @@ const Index = () => {
 
       {/* Main Portfolio Content */}
       {showContent && (
-        <main className="snap-y snap-mandatory overflow-y-scroll h-screen">
-          <div className="snap-section"><HeroSection /></div>
-          <div className="snap-section"><AboutSection /></div>
-          <div className="snap-section"><SkillsSection /></div>
-          <div className="snap-section"><ProjectsSection /></div>
-          <div className="snap-section"><ContactSection /></div>
-          <div className="snap-section"><SocialSection /></div>
+        <main className="snap-container">
+          <section className="snap-page"><HeroSection /></section>
+          <section className="snap-page"><AboutSection /></section>
+          <section className="snap-page"><SkillsSection /></section>
+          <section className="snap-page"><ProjectsSection /></section>
+          <section className="snap-page"><ContactSection /></section>
+          <section className="snap-page"><SocialSection /></section>
         </main>
       )}
     </>

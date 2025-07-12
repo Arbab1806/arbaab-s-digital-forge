@@ -23,84 +23,120 @@ const CurtainAnimation: React.FC<CurtainAnimationProps> = ({ isOpen, onComplete 
           if (isOpen) onComplete();
         }}
       >
-        {/* Main curtain body */}
-        <div className="w-full h-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-600 relative overflow-hidden">
-          {/* Fabric texture with ripple effect */}
+        {/* Premium curtain body with fluid effects */}
+        <div className="w-full h-full relative overflow-hidden">
+          {/* Multiple gradient layers for depth */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"
+            animate={isOpen ? {
+              scale: [1, 1.02, 1],
+              opacity: [1, 0.9, 0.7]
+            } : {}}
+            transition={{ duration: 2, ease: "easeInOut" }}
+          />
+          
+          {/* Ripple wave effect */}
           <motion.div
             className="absolute inset-0"
             animate={isOpen ? {
-              backgroundPosition: ["0% 0%", "100% 0%"],
-              opacity: [1, 0.8, 1]
+              backgroundPosition: ["0% 0%", "100% 50%", "200% 100%"],
+              opacity: [0.8, 0.6, 0.3]
             } : {}}
-            transition={{ duration: 1.5, repeat: 1 }}
+            transition={{ duration: 2.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               backgroundImage: `repeating-linear-gradient(
-                90deg,
+                45deg,
                 transparent,
-                transparent 3px,
-                hsl(var(--gray-600) / 0.3) 3px,
-                hsl(var(--gray-600) / 0.3) 4px
+                transparent 8px,
+                hsl(var(--cyber-blue) / 0.1) 8px,
+                hsl(var(--cyber-blue) / 0.1) 12px
               )`
             }}
           />
           
-          {/* Vertical curtain folds */}
-          {Array.from({ length: 12 }, (_, i) => (
+          {/* Fluid vertical folds with wave motion */}
+          {Array.from({ length: 15 }, (_, i) => (
             <motion.div
               key={i}
-              className="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-gray-500 to-gray-700 opacity-40"
-              style={{ left: `${(i + 1) * 8}%` }}
+              className="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 opacity-30"
+              style={{ left: `${(i + 1) * 6.5}%` }}
               animate={isOpen ? {
-                scaleY: [1, 0.95, 1.05, 1],
-                opacity: [0.4, 0.6, 0.2]
+                scaleY: [1, 0.9, 1.1, 0.95, 1],
+                scaleX: [1, 1.2, 0.8, 1],
+                opacity: [0.3, 0.5, 0.2, 0.1],
+                rotateZ: [0, 2, -1, 0]
               } : {}}
               transition={{ 
-                duration: 1.2, 
-                delay: i * 0.05,
-                repeat: 1
+                duration: 2.2, 
+                delay: i * 0.08,
+                ease: [0.25, 0.46, 0.45, 0.94]
               }}
             />
           ))}
           
-          {/* Glowing cyber edge with particles */}
+          {/* Premium glowing edge with blur effect */}
           <motion.div 
-            className="absolute top-0 right-0 bottom-0 w-2 bg-gradient-to-b from-primary to-cyber-blue"
+            className="absolute top-0 right-0 bottom-0 w-3 bg-gradient-to-b from-cyber-blue via-primary to-cyber-blue"
             style={{
               boxShadow: `
-                0 0 20px hsl(var(--primary)),
-                0 0 40px hsl(var(--cyber-blue) / 0.7),
-                inset 0 0 20px hsl(var(--primary) / 0.5)
-              `
+                0 0 30px hsl(var(--cyber-blue)),
+                0 0 60px hsl(var(--cyber-blue) / 0.8),
+                inset 0 0 25px hsl(var(--cyber-blue) / 0.6),
+                0 0 100px hsl(var(--cyber-blue) / 0.4)
+              `,
+              filter: 'blur(0.5px)'
             }}
-            animate={{
-              opacity: [0.8, 1, 0.8],
+            animate={isOpen ? {
+              opacity: [1, 0.7, 0.9, 0.4],
+              scaleX: [1, 1.5, 0.8, 0.3],
               boxShadow: [
-                "0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--cyber-blue) / 0.7)",
-                "0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--cyber-blue))",
-                "0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--cyber-blue) / 0.7)"
+                "0 0 30px hsl(var(--cyber-blue)), 0 0 60px hsl(var(--cyber-blue) / 0.8)",
+                "0 0 50px hsl(var(--cyber-blue)), 0 0 100px hsl(var(--cyber-blue))",
+                "0 0 20px hsl(var(--cyber-blue)), 0 0 40px hsl(var(--cyber-blue) / 0.5)"
+              ]
+            } : {
+              opacity: [0.9, 1, 0.9],
+              boxShadow: [
+                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)",
+                "0 0 35px hsl(var(--cyber-blue)), 0 0 70px hsl(var(--cyber-blue))",
+                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)"
               ]
             }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ 
+              duration: isOpen ? 2.5 : 2, 
+              repeat: isOpen ? 0 : Infinity,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           />
           
-          {/* Floating particles along the edge */}
-          {Array.from({ length: 6 }, (_, i) => (
+          {/* Enhanced floating particles with motion blur */}
+          {Array.from({ length: 10 }, (_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-primary rounded-full"
+              className="absolute rounded-full bg-cyber-blue"
               style={{ 
-                right: '8px',
-                top: `${15 + i * 12}%`
+                right: '6px',
+                top: `${10 + i * 8}%`,
+                width: `${2 + (i % 3)}px`,
+                height: `${2 + (i % 3)}px`,
+                filter: 'blur(0.5px)',
+                boxShadow: '0 0 8px hsl(var(--cyber-blue))'
               }}
-              animate={{
-                x: [0, -10, 0],
+              animate={isOpen ? {
+                x: [0, -15, -30, -50],
+                y: [0, Math.random() * 20 - 10, Math.random() * 30 - 15],
+                opacity: [1, 0.8, 0.3, 0],
+                scale: [1, 1.5, 2, 0]
+              } : {
+                x: [0, -8, 0],
                 opacity: [0, 1, 0],
-                scale: [0, 1.5, 0]
+                scale: [0, 1.2, 0]
               }}
               transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 0.3
+                duration: isOpen ? 3 : 2.5,
+                repeat: isOpen ? 0 : Infinity,
+                delay: i * 0.2,
+                ease: [0.25, 0.46, 0.45, 0.94]
               }}
             />
           ))}
@@ -118,84 +154,120 @@ const CurtainAnimation: React.FC<CurtainAnimationProps> = ({ isOpen, onComplete 
           delay: 0.3
         }}
       >
-        {/* Main curtain body */}
-        <div className="w-full h-full bg-gradient-to-l from-gray-900 via-gray-800 to-gray-600 relative overflow-hidden">
-          {/* Fabric texture with ripple effect */}
+        {/* Premium curtain body with fluid effects */}
+        <div className="w-full h-full relative overflow-hidden">
+          {/* Multiple gradient layers for depth */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-bl from-gray-900 via-black to-gray-800"
+            animate={isOpen ? {
+              scale: [1, 1.02, 1],
+              opacity: [1, 0.9, 0.7]
+            } : {}}
+            transition={{ duration: 2, ease: "easeInOut" }}
+          />
+          
+          {/* Ripple wave effect */}
           <motion.div
             className="absolute inset-0"
             animate={isOpen ? {
-              backgroundPosition: ["0% 0%", "-100% 0%"],
-              opacity: [1, 0.8, 1]
+              backgroundPosition: ["0% 0%", "-100% 50%", "-200% 100%"],
+              opacity: [0.8, 0.6, 0.3]
             } : {}}
-            transition={{ duration: 1.5, repeat: 1 }}
+            transition={{ duration: 2.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               backgroundImage: `repeating-linear-gradient(
-                90deg,
+                -45deg,
                 transparent,
-                transparent 3px,
-                hsl(var(--gray-600) / 0.3) 3px,
-                hsl(var(--gray-600) / 0.3) 4px
+                transparent 8px,
+                hsl(var(--cyber-blue) / 0.1) 8px,
+                hsl(var(--cyber-blue) / 0.1) 12px
               )`
             }}
           />
           
-          {/* Vertical curtain folds */}
-          {Array.from({ length: 12 }, (_, i) => (
+          {/* Fluid vertical folds with wave motion */}
+          {Array.from({ length: 15 }, (_, i) => (
             <motion.div
               key={i}
-              className="absolute top-0 bottom-0 w-0.5 bg-gradient-to-b from-gray-500 to-gray-700 opacity-40"
-              style={{ left: `${(i + 1) * 8}%` }}
+              className="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 opacity-30"
+              style={{ left: `${(i + 1) * 6.5}%` }}
               animate={isOpen ? {
-                scaleY: [1, 0.95, 1.05, 1],
-                opacity: [0.4, 0.6, 0.2]
+                scaleY: [1, 0.9, 1.1, 0.95, 1],
+                scaleX: [1, 1.2, 0.8, 1],
+                opacity: [0.3, 0.5, 0.2, 0.1],
+                rotateZ: [0, -2, 1, 0]
               } : {}}
               transition={{ 
-                duration: 1.2, 
-                delay: i * 0.05,
-                repeat: 1
+                duration: 2.2, 
+                delay: i * 0.08,
+                ease: [0.25, 0.46, 0.45, 0.94]
               }}
             />
           ))}
           
-          {/* Glowing cyber edge with particles */}
+          {/* Premium glowing edge with blur effect */}
           <motion.div 
-            className="absolute top-0 left-0 bottom-0 w-2 bg-gradient-to-b from-primary to-cyber-blue"
+            className="absolute top-0 left-0 bottom-0 w-3 bg-gradient-to-b from-cyber-blue via-primary to-cyber-blue"
             style={{
               boxShadow: `
-                0 0 20px hsl(var(--primary)),
-                0 0 40px hsl(var(--cyber-blue) / 0.7),
-                inset 0 0 20px hsl(var(--primary) / 0.5)
-              `
+                0 0 30px hsl(var(--cyber-blue)),
+                0 0 60px hsl(var(--cyber-blue) / 0.8),
+                inset 0 0 25px hsl(var(--cyber-blue) / 0.6),
+                0 0 100px hsl(var(--cyber-blue) / 0.4)
+              `,
+              filter: 'blur(0.5px)'
             }}
-            animate={{
-              opacity: [0.8, 1, 0.8],
+            animate={isOpen ? {
+              opacity: [1, 0.7, 0.9, 0.4],
+              scaleX: [1, 1.5, 0.8, 0.3],
               boxShadow: [
-                "0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--cyber-blue) / 0.7)",
-                "0 0 40px hsl(var(--primary)), 0 0 60px hsl(var(--cyber-blue))",
-                "0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--cyber-blue) / 0.7)"
+                "0 0 30px hsl(var(--cyber-blue)), 0 0 60px hsl(var(--cyber-blue) / 0.8)",
+                "0 0 50px hsl(var(--cyber-blue)), 0 0 100px hsl(var(--cyber-blue))",
+                "0 0 20px hsl(var(--cyber-blue)), 0 0 40px hsl(var(--cyber-blue) / 0.5)"
+              ]
+            } : {
+              opacity: [0.9, 1, 0.9],
+              boxShadow: [
+                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)",
+                "0 0 35px hsl(var(--cyber-blue)), 0 0 70px hsl(var(--cyber-blue))",
+                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)"
               ]
             }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ 
+              duration: isOpen ? 2.5 : 2, 
+              repeat: isOpen ? 0 : Infinity,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
           />
           
-          {/* Floating particles along the edge */}
-          {Array.from({ length: 6 }, (_, i) => (
+          {/* Enhanced floating particles with motion blur */}
+          {Array.from({ length: 10 }, (_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-primary rounded-full"
+              className="absolute rounded-full bg-cyber-blue"
               style={{ 
-                left: '8px',
-                top: `${15 + i * 12}%`
+                left: '6px',
+                top: `${10 + i * 8}%`,
+                width: `${2 + (i % 3)}px`,
+                height: `${2 + (i % 3)}px`,
+                filter: 'blur(0.5px)',
+                boxShadow: '0 0 8px hsl(var(--cyber-blue))'
               }}
-              animate={{
-                x: [0, 10, 0],
+              animate={isOpen ? {
+                x: [0, 15, 30, 50],
+                y: [0, Math.random() * 20 - 10, Math.random() * 30 - 15],
+                opacity: [1, 0.8, 0.3, 0],
+                scale: [1, 1.5, 2, 0]
+              } : {
+                x: [0, 8, 0],
                 opacity: [0, 1, 0],
-                scale: [0, 1.5, 0]
+                scale: [0, 1.2, 0]
               }}
               transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 0.3
+                duration: isOpen ? 3 : 2.5,
+                repeat: isOpen ? 0 : Infinity,
+                delay: i * 0.2,
+                ease: [0.25, 0.46, 0.45, 0.94]
               }}
             />
           ))}
