@@ -38,9 +38,9 @@
     --radius: 0.75rem;
 
     /* Minimal Accent Colors */
-    --cyber-blue: 195 100% 60%;        /* Electric blue accent */
-    --cyber-green: 120 60% 35%;        /* Minimal green usage */
-    --cyber-purple: 270 50% 45%;       /* Reduced purple */
+    --cyber-blue: 220 8% 35%;          /* Dark gray accent */
+    --cyber-green: 220 8% 45%;         /* Light gray usage */
+    --cyber-purple: 220 8% 30%;        /* Medium gray */
     --cyber-red: 0 85% 50%;            /* Alert red */
     
     /* Black & Gray Scale */
@@ -56,13 +56,13 @@
     --gray-900: 220 8% 5%;
 
     /* Gradients */
-    --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-blue)), hsl(var(--cyber-green)));
+    --gradient-cyber: linear-gradient(135deg, hsl(220 8% 35%), hsl(220 8% 45%));
     --gradient-dark: linear-gradient(135deg, hsl(var(--background)), hsl(220 8% 12%));
-    --gradient-glow: radial-gradient(circle, hsl(var(--cyber-blue) / 0.3), transparent 70%);
+    --gradient-glow: radial-gradient(circle, hsl(220 8% 35% / 0.3), transparent 70%);
 
     /* Shadows & Glows */
-    --shadow-cyber: 0 0 20px hsl(var(--cyber-blue) / 0.5);
-    --shadow-green: 0 0 20px hsl(var(--cyber-green) / 0.5);
+    --shadow-cyber: 0 0 20px hsl(220 8% 35% / 0.5);
+    --shadow-green: 0 0 20px hsl(220 8% 45% / 0.5);
     --shadow-elegant: 0 25px 50px -12px hsl(220 8% 4% / 0.8);
 
     /* Animations */
@@ -145,12 +145,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--cyber-blue));
+    background: hsl(220 8% 35%);
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--cyber-green));
+    background: hsl(220 8% 45%);
   }
 }
 
@@ -169,8 +169,8 @@
     content: '⚡';
     position: absolute;
     font-size: 20px;
-    color: hsl(var(--cyber-blue));
-    filter: drop-shadow(0 0 10px hsl(var(--cyber-blue)));
+    color: hsl(220 8% 35%);
+    filter: drop-shadow(0 0 10px hsl(220 8% 35%));
     animation: pulse-glow 2s infinite;
   }
 
@@ -189,8 +189,8 @@
   /* Cyber grid background */
   .cyber-grid {
     background-image: 
-      linear-gradient(hsl(var(--cyber-blue) / 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--cyber-blue) / 0.1) 1px, transparent 1px);
+      linear-gradient(hsl(220 8% 35% / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(220 8% 35% / 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
     position: absolute;
     inset: 0;
@@ -259,10 +259,10 @@
   /* Animation keyframes */
   @keyframes pulse-glow {
     0%, 100% {
-      filter: drop-shadow(0 0 10px hsl(var(--cyber-blue)));
+      filter: drop-shadow(0 0 10px hsl(220 8% 35%));
     }
     50% {
-      filter: drop-shadow(0 0 20px hsl(var(--cyber-blue))) drop-shadow(0 0 30px hsl(var(--cyber-green)));
+      filter: drop-shadow(0 0 20px hsl(220 8% 35%)) drop-shadow(0 0 30px hsl(220 8% 45%));
     }
   }
 

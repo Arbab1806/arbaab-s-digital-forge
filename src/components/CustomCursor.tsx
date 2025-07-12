@@ -6,39 +6,25 @@ const CustomCursor = () => {
   const [cursorVariant, setCursorVariant] = useState('default');
 
   useEffect(() => {
-    // Use RAF for smoother cursor movement
-    let animationId: number;
-    
     const mouseMove = (e: MouseEvent) => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-      
-      animationId = requestAnimationFrame(() => {
-        setMousePosition({
-          x: e.clientX,
-          y: e.clientY
-        });
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY
       });
     };
 
     const mouseEnter = () => setCursorVariant('hover');
     const mouseLeave = () => setCursorVariant('default');
 
-    // Use passive event listeners for better performance
-    window.addEventListener('mousemove', mouseMove, { passive: true });
+    window.addEventListener('mousemove', mouseMove);
     
-    // Add hover effects for interactive elements
     const interactiveElements = document.querySelectorAll('button, a, [role="button"]');
     interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', mouseEnter, { passive: true });
-      el.addEventListener('mouseleave', mouseLeave, { passive: true });
+      el.addEventListener('mouseenter', mouseEnter);
+      el.addEventListener('mouseleave', mouseLeave);
     });
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
       window.removeEventListener('mousemove', mouseMove);
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', mouseEnter);
@@ -67,7 +53,7 @@ const CustomCursor = () => {
       animate={cursorVariant}
       transition={{
         type: "tween",
-        duration: 0.02,
+        duration: 0,
         ease: "linear"
       }}
     >
@@ -88,7 +74,7 @@ const CustomCursor = () => {
         
         {/* Glow effect */}
         <motion.div
-          className="absolute inset-0 rounded-full bg-cyber-blue opacity-30 blur-sm"
+          className="absolute inset-0 rounded-full bg-gray-500 opacity-30 blur-sm"
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.3, 0.6, 0.3]
