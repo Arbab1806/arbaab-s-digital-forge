@@ -64,9 +64,15 @@ const Index = () => {
         
         .snap-container {
           scroll-snap-type: y mandatory;
-          overflow-y: scroll;
+          overflow-y: auto;
           height: 100vh;
           scroll-behavior: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        
+        .snap-container::-webkit-scrollbar {
+          display: none;
         }
         
         .snap-page {
@@ -78,6 +84,8 @@ const Index = () => {
           display: flex;
           align-items: center;
           justify-content: center;
+          flex-shrink: 0;
+          overflow: hidden;
         }
       `;
       document.head.appendChild(style);

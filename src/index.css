@@ -16,8 +16,8 @@
     --popover: 220 8% 5%;
     --popover-foreground: 210 20% 90%;
 
-    --primary: 195 100% 60%;           /* Electric blue accent */
-    --primary-foreground: 220 8% 3%;
+    --primary: 220 8% 25%;             /* Dark gray primary - NOT blue */
+    --primary-foreground: 210 20% 92%;
 
     --secondary: 220 8% 8%;            /* Medium dark gray */
     --secondary-foreground: 210 20% 88%;
@@ -33,7 +33,7 @@
 
     --border: 220 8% 12%;             /* Subtle border */
     --input: 220 8% 8%;
-    --ring: 195 100% 60%;
+    --ring: 220 8% 25%;
 
     --radius: 0.75rem;
 
