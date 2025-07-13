@@ -9,13 +9,13 @@ interface CurtainAnimationProps {
 const CurtainAnimation: React.FC<CurtainAnimationProps> = ({ isOpen, onComplete }) => {
   return (
     <>
-      {/* Left Curtain */}
+      {/* Left Curtain - Fabric Style */}
       <motion.div
         className="fixed top-0 left-0 w-1/2 h-full z-40"
         initial={{ x: 0 }}
         animate={{ x: isOpen ? "-100%" : 0 }}
         transition={{ 
-          duration: 2, 
+          duration: 2.5, 
           ease: [0.25, 0.46, 0.45, 0.94],
           delay: 0.3
         }}
@@ -23,254 +23,340 @@ const CurtainAnimation: React.FC<CurtainAnimationProps> = ({ isOpen, onComplete 
           if (isOpen) onComplete();
         }}
       >
-        {/* Premium curtain body with fluid effects */}
+        {/* Fabric curtain with realistic folds and texture */}
         <div className="w-full h-full relative overflow-hidden">
-          {/* Multiple gradient layers for depth */}
+          {/* Heavy velvet fabric base */}
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"
-            animate={isOpen ? {
-              scale: [1, 1.02, 1],
-              opacity: [1, 0.9, 0.7]
-            } : {}}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-          
-          {/* Ripple wave effect */}
-          <motion.div
             className="absolute inset-0"
-            animate={isOpen ? {
-              backgroundPosition: ["0% 0%", "100% 50%", "200% 100%"],
-              opacity: [0.8, 0.6, 0.3]
-            } : {}}
-            transition={{ duration: 2.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
-              backgroundImage: `repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 8px,
-                hsl(var(--cyber-blue) / 0.1) 8px,
-                hsl(var(--cyber-blue) / 0.1) 12px
-              )`
+              background: `
+                linear-gradient(90deg, 
+                  hsl(220 60% 8%) 0%,
+                  hsl(220 55% 12%) 15%,
+                  hsl(220 60% 8%) 30%,
+                  hsl(220 55% 12%) 45%,
+                  hsl(220 60% 8%) 60%,
+                  hsl(220 55% 12%) 75%,
+                  hsl(220 60% 8%) 90%,
+                  hsl(220 65% 5%) 100%
+                ),
+                radial-gradient(ellipse at 20% 50%, hsl(220 70% 15% / 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, hsl(220 60% 20% / 0.2) 0%, transparent 40%)
+              `
             }}
+            animate={isOpen ? {
+              scale: [1, 1.05, 1.02],
+              filter: ["brightness(1)", "brightness(0.9)", "brightness(0.7)"]
+            } : {}}
+            transition={{ duration: 2.5, ease: "easeInOut" }}
           />
           
-          {/* Fluid vertical folds with wave motion */}
-          {Array.from({ length: 15 }, (_, i) => (
+          {/* Fabric pleats and folds - vertical draping */}
+          {Array.from({ length: 12 }, (_, i) => (
             <motion.div
-              key={i}
-              className="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 opacity-30"
-              style={{ left: `${(i + 1) * 6.5}%` }}
+              key={`fold-${i}`}
+              className="absolute top-0 bottom-0"
+              style={{ 
+                left: `${8 + i * 7}%`,
+                width: '4px',
+                background: `linear-gradient(to bottom,
+                  hsl(220 70% ${5 + (i % 3) * 3}%) 0%,
+                  hsl(220 65% ${8 + (i % 2) * 4}%) 20%,
+                  hsl(220 60% ${6 + (i % 4) * 2}%) 40%,
+                  hsl(220 65% ${9 + (i % 3) * 3}%) 60%,
+                  hsl(220 70% ${4 + (i % 2) * 5}%) 80%,
+                  hsl(220 60% ${7 + (i % 4) * 2}%) 100%
+                )`,
+                boxShadow: `
+                  2px 0 4px hsl(220 80% 5% / 0.6),
+                  -1px 0 2px hsl(220 70% 15% / 0.3)
+                `
+              }}
               animate={isOpen ? {
-                scaleY: [1, 0.9, 1.1, 0.95, 1],
-                scaleX: [1, 1.2, 0.8, 1],
-                opacity: [0.3, 0.5, 0.2, 0.1],
-                rotateZ: [0, 2, -1, 0]
-              } : {}}
+                scaleY: [1, 0.95, 1.08, 0.92],
+                scaleX: [1, 1.3, 0.7, 1.1],
+                rotateZ: [0, 1.5, -0.8, 0.5],
+                opacity: [1, 0.8, 0.6, 0.3]
+              } : {
+                scaleY: [1, 1.02, 1],
+                rotateZ: [0, 0.3, 0]
+              }}
               transition={{ 
-                duration: 2.2, 
-                delay: i * 0.08,
+                duration: isOpen ? 2.8 : 3, 
+                delay: i * 0.1,
+                repeat: isOpen ? 0 : Infinity,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             />
           ))}
           
-          {/* Premium glowing edge with blur effect */}
+          {/* Fabric weight lines - horizontal gathering */}
+          {Array.from({ length: 8 }, (_, i) => (
+            <motion.div
+              key={`weight-${i}`}
+              className="absolute left-0 right-0 h-1"
+              style={{ 
+                top: `${15 + i * 10}%`,
+                background: `linear-gradient(to right,
+                  transparent 0%,
+                  hsl(220 80% 3% / 0.8) 20%,
+                  hsl(220 70% 8% / 0.6) 50%,
+                  hsl(220 80% 3% / 0.8) 80%,
+                  transparent 100%
+                )`,
+                borderTop: '1px solid hsl(220 60% 12%)',
+                borderBottom: '1px solid hsl(220 80% 4%)'
+              }}
+              animate={isOpen ? {
+                scaleX: [1, 0.8, 0.6, 0.2],
+                opacity: [0.6, 0.4, 0.2, 0]
+              } : {
+                scaleX: [0.9, 1, 0.9],
+                opacity: [0.4, 0.6, 0.4]
+              }}
+              transition={{ 
+                duration: isOpen ? 2.5 : 4, 
+                delay: i * 0.15,
+                repeat: isOpen ? 0 : Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+          
+          {/* Curtain rod connection - brass rings */}
+          {Array.from({ length: 8 }, (_, i) => (
+            <motion.div
+              key={`ring-${i}`}
+              className="absolute top-2 w-3 h-3 rounded-full"
+              style={{ 
+                left: `${12 + i * 10}%`,
+                background: `radial-gradient(circle, hsl(45 70% 50%) 0%, hsl(45 60% 35%) 70%, hsl(45 80% 25%) 100%)`,
+                boxShadow: `
+                  0 2px 4px hsl(220 80% 5% / 0.8),
+                  inset 0 1px 2px hsl(45 80% 60%)
+                `
+              }}
+              animate={isOpen ? {
+                scale: [1, 0.8, 0.6],
+                y: [0, 3, 8],
+                opacity: [1, 0.7, 0]
+              } : {
+                y: [0, 1, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: isOpen ? 2.2 : 2,
+                delay: i * 0.08,
+                repeat: isOpen ? 0 : Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+
+          {/* Fabric edge with golden trim */}
           <motion.div 
-            className="absolute top-0 right-0 bottom-0 w-3 bg-gradient-to-b from-cyber-blue via-primary to-cyber-blue"
+            className="absolute top-0 right-0 bottom-0 w-2"
             style={{
+              background: `linear-gradient(to bottom,
+                hsl(45 80% 45%) 0%,
+                hsl(45 70% 35%) 25%,
+                hsl(45 80% 45%) 50%,
+                hsl(45 70% 35%) 75%,
+                hsl(45 80% 45%) 100%
+              )`,
               boxShadow: `
-                0 0 30px hsl(var(--cyber-blue)),
-                0 0 60px hsl(var(--cyber-blue) / 0.8),
-                inset 0 0 25px hsl(var(--cyber-blue) / 0.6),
-                0 0 100px hsl(var(--cyber-blue) / 0.4)
-              `,
-              filter: 'blur(0.5px)'
+                0 0 15px hsl(220 70% 25%),
+                0 0 30px hsl(220 60% 20% / 0.8),
+                inset 0 0 10px hsl(45 90% 55%)
+              `
             }}
             animate={isOpen ? {
-              opacity: [1, 0.7, 0.9, 0.4],
-              scaleX: [1, 1.5, 0.8, 0.3],
-              boxShadow: [
-                "0 0 30px hsl(var(--cyber-blue)), 0 0 60px hsl(var(--cyber-blue) / 0.8)",
-                "0 0 50px hsl(var(--cyber-blue)), 0 0 100px hsl(var(--cyber-blue))",
-                "0 0 20px hsl(var(--cyber-blue)), 0 0 40px hsl(var(--cyber-blue) / 0.5)"
-              ]
+              opacity: [1, 0.8, 0.5],
+              scaleX: [1, 0.7, 0.3],
+              filter: ["brightness(1)", "brightness(1.2)", "brightness(0.8)"]
             } : {
-              opacity: [0.9, 1, 0.9],
-              boxShadow: [
-                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)",
-                "0 0 35px hsl(var(--cyber-blue)), 0 0 70px hsl(var(--cyber-blue))",
-                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)"
-              ]
+              filter: ["brightness(1)", "brightness(1.1)", "brightness(1)"]
             }}
             transition={{ 
-              duration: isOpen ? 2.5 : 2, 
+              duration: isOpen ? 2.5 : 3, 
               repeat: isOpen ? 0 : Infinity,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
           />
-          
-          {/* Enhanced floating particles with motion blur */}
-          {Array.from({ length: 10 }, (_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-cyber-blue"
-              style={{ 
-                right: '6px',
-                top: `${10 + i * 8}%`,
-                width: `${2 + (i % 3)}px`,
-                height: `${2 + (i % 3)}px`,
-                filter: 'blur(0.5px)',
-                boxShadow: '0 0 8px hsl(var(--cyber-blue))'
-              }}
-              animate={isOpen ? {
-                x: [0, -15, -30, -50],
-                y: [0, Math.random() * 20 - 10, Math.random() * 30 - 15],
-                opacity: [1, 0.8, 0.3, 0],
-                scale: [1, 1.5, 2, 0]
-              } : {
-                x: [0, -8, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1.2, 0]
-              }}
-              transition={{
-                duration: isOpen ? 3 : 2.5,
-                repeat: isOpen ? 0 : Infinity,
-                delay: i * 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            />
-          ))}
         </div>
       </motion.div>
 
-      {/* Right Curtain */}
+      {/* Right Curtain - Fabric Style */}
       <motion.div
         className="fixed top-0 right-0 w-1/2 h-full z-40"
         initial={{ x: 0 }}
         animate={{ x: isOpen ? "100%" : 0 }}
         transition={{ 
-          duration: 2, 
+          duration: 2.5, 
           ease: [0.25, 0.46, 0.45, 0.94],
           delay: 0.3
         }}
       >
-        {/* Premium curtain body with fluid effects */}
+        {/* Fabric curtain with realistic folds and texture */}
         <div className="w-full h-full relative overflow-hidden">
-          {/* Multiple gradient layers for depth */}
+          {/* Heavy velvet fabric base */}
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-bl from-gray-900 via-black to-gray-800"
-            animate={isOpen ? {
-              scale: [1, 1.02, 1],
-              opacity: [1, 0.9, 0.7]
-            } : {}}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-          
-          {/* Ripple wave effect */}
-          <motion.div
             className="absolute inset-0"
-            animate={isOpen ? {
-              backgroundPosition: ["0% 0%", "-100% 50%", "-200% 100%"],
-              opacity: [0.8, 0.6, 0.3]
-            } : {}}
-            transition={{ duration: 2.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
-              backgroundImage: `repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 8px,
-                hsl(var(--cyber-blue) / 0.1) 8px,
-                hsl(var(--cyber-blue) / 0.1) 12px
-              )`
+              background: `
+                linear-gradient(270deg, 
+                  hsl(220 60% 8%) 0%,
+                  hsl(220 55% 12%) 15%,
+                  hsl(220 60% 8%) 30%,
+                  hsl(220 55% 12%) 45%,
+                  hsl(220 60% 8%) 60%,
+                  hsl(220 55% 12%) 75%,
+                  hsl(220 60% 8%) 90%,
+                  hsl(220 65% 5%) 100%
+                ),
+                radial-gradient(ellipse at 80% 50%, hsl(220 70% 15% / 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 70%, hsl(220 60% 20% / 0.2) 0%, transparent 40%)
+              `
             }}
+            animate={isOpen ? {
+              scale: [1, 1.05, 1.02],
+              filter: ["brightness(1)", "brightness(0.9)", "brightness(0.7)"]
+            } : {}}
+            transition={{ duration: 2.5, ease: "easeInOut" }}
           />
           
-          {/* Fluid vertical folds with wave motion */}
-          {Array.from({ length: 15 }, (_, i) => (
+          {/* Fabric pleats and folds - vertical draping */}
+          {Array.from({ length: 12 }, (_, i) => (
             <motion.div
-              key={i}
-              className="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 opacity-30"
-              style={{ left: `${(i + 1) * 6.5}%` }}
+              key={`fold-${i}`}
+              className="absolute top-0 bottom-0"
+              style={{ 
+                left: `${8 + i * 7}%`,
+                width: '4px',
+                background: `linear-gradient(to bottom,
+                  hsl(220 70% ${5 + (i % 3) * 3}%) 0%,
+                  hsl(220 65% ${8 + (i % 2) * 4}%) 20%,
+                  hsl(220 60% ${6 + (i % 4) * 2}%) 40%,
+                  hsl(220 65% ${9 + (i % 3) * 3}%) 60%,
+                  hsl(220 70% ${4 + (i % 2) * 5}%) 80%,
+                  hsl(220 60% ${7 + (i % 4) * 2}%) 100%
+                )`,
+                boxShadow: `
+                  -2px 0 4px hsl(220 80% 5% / 0.6),
+                  1px 0 2px hsl(220 70% 15% / 0.3)
+                `
+              }}
               animate={isOpen ? {
-                scaleY: [1, 0.9, 1.1, 0.95, 1],
-                scaleX: [1, 1.2, 0.8, 1],
-                opacity: [0.3, 0.5, 0.2, 0.1],
-                rotateZ: [0, -2, 1, 0]
-              } : {}}
+                scaleY: [1, 0.95, 1.08, 0.92],
+                scaleX: [1, 1.3, 0.7, 1.1],
+                rotateZ: [0, -1.5, 0.8, -0.5],
+                opacity: [1, 0.8, 0.6, 0.3]
+              } : {
+                scaleY: [1, 1.02, 1],
+                rotateZ: [0, -0.3, 0]
+              }}
               transition={{ 
-                duration: 2.2, 
-                delay: i * 0.08,
+                duration: isOpen ? 2.8 : 3, 
+                delay: i * 0.1,
+                repeat: isOpen ? 0 : Infinity,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             />
           ))}
           
-          {/* Premium glowing edge with blur effect */}
+          {/* Fabric weight lines - horizontal gathering */}
+          {Array.from({ length: 8 }, (_, i) => (
+            <motion.div
+              key={`weight-${i}`}
+              className="absolute left-0 right-0 h-1"
+              style={{ 
+                top: `${15 + i * 10}%`,
+                background: `linear-gradient(to left,
+                  transparent 0%,
+                  hsl(220 80% 3% / 0.8) 20%,
+                  hsl(220 70% 8% / 0.6) 50%,
+                  hsl(220 80% 3% / 0.8) 80%,
+                  transparent 100%
+                )`,
+                borderTop: '1px solid hsl(220 60% 12%)',
+                borderBottom: '1px solid hsl(220 80% 4%)'
+              }}
+              animate={isOpen ? {
+                scaleX: [1, 0.8, 0.6, 0.2],
+                opacity: [0.6, 0.4, 0.2, 0]
+              } : {
+                scaleX: [0.9, 1, 0.9],
+                opacity: [0.4, 0.6, 0.4]
+              }}
+              transition={{ 
+                duration: isOpen ? 2.5 : 4, 
+                delay: i * 0.15,
+                repeat: isOpen ? 0 : Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+          
+          {/* Curtain rod connection - brass rings */}
+          {Array.from({ length: 8 }, (_, i) => (
+            <motion.div
+              key={`ring-${i}`}
+              className="absolute top-2 w-3 h-3 rounded-full"
+              style={{ 
+                left: `${12 + i * 10}%`,
+                background: `radial-gradient(circle, hsl(45 70% 50%) 0%, hsl(45 60% 35%) 70%, hsl(45 80% 25%) 100%)`,
+                boxShadow: `
+                  0 2px 4px hsl(220 80% 5% / 0.8),
+                  inset 0 1px 2px hsl(45 80% 60%)
+                `
+              }}
+              animate={isOpen ? {
+                scale: [1, 0.8, 0.6],
+                y: [0, 3, 8],
+                opacity: [1, 0.7, 0]
+              } : {
+                y: [0, 1, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: isOpen ? 2.2 : 2,
+                delay: i * 0.08,
+                repeat: isOpen ? 0 : Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+
+          {/* Fabric edge with golden trim */}
           <motion.div 
-            className="absolute top-0 left-0 bottom-0 w-3 bg-gradient-to-b from-cyber-blue via-primary to-cyber-blue"
+            className="absolute top-0 left-0 bottom-0 w-2"
             style={{
+              background: `linear-gradient(to bottom,
+                hsl(45 80% 45%) 0%,
+                hsl(45 70% 35%) 25%,
+                hsl(45 80% 45%) 50%,
+                hsl(45 70% 35%) 75%,
+                hsl(45 80% 45%) 100%
+              )`,
               boxShadow: `
-                0 0 30px hsl(var(--cyber-blue)),
-                0 0 60px hsl(var(--cyber-blue) / 0.8),
-                inset 0 0 25px hsl(var(--cyber-blue) / 0.6),
-                0 0 100px hsl(var(--cyber-blue) / 0.4)
-              `,
-              filter: 'blur(0.5px)'
+                0 0 15px hsl(220 70% 25%),
+                0 0 30px hsl(220 60% 20% / 0.8),
+                inset 0 0 10px hsl(45 90% 55%)
+              `
             }}
             animate={isOpen ? {
-              opacity: [1, 0.7, 0.9, 0.4],
-              scaleX: [1, 1.5, 0.8, 0.3],
-              boxShadow: [
-                "0 0 30px hsl(var(--cyber-blue)), 0 0 60px hsl(var(--cyber-blue) / 0.8)",
-                "0 0 50px hsl(var(--cyber-blue)), 0 0 100px hsl(var(--cyber-blue))",
-                "0 0 20px hsl(var(--cyber-blue)), 0 0 40px hsl(var(--cyber-blue) / 0.5)"
-              ]
+              opacity: [1, 0.8, 0.5],
+              scaleX: [1, 0.7, 0.3],
+              filter: ["brightness(1)", "brightness(1.2)", "brightness(0.8)"]
             } : {
-              opacity: [0.9, 1, 0.9],
-              boxShadow: [
-                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)",
-                "0 0 35px hsl(var(--cyber-blue)), 0 0 70px hsl(var(--cyber-blue))",
-                "0 0 25px hsl(var(--cyber-blue)), 0 0 50px hsl(var(--cyber-blue) / 0.7)"
-              ]
+              filter: ["brightness(1)", "brightness(1.1)", "brightness(1)"]
             }}
             transition={{ 
-              duration: isOpen ? 2.5 : 2, 
+              duration: isOpen ? 2.5 : 3, 
               repeat: isOpen ? 0 : Infinity,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
           />
-          
-          {/* Enhanced floating particles with motion blur */}
-          {Array.from({ length: 10 }, (_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-cyber-blue"
-              style={{ 
-                left: '6px',
-                top: `${10 + i * 8}%`,
-                width: `${2 + (i % 3)}px`,
-                height: `${2 + (i % 3)}px`,
-                filter: 'blur(0.5px)',
-                boxShadow: '0 0 8px hsl(var(--cyber-blue))'
-              }}
-              animate={isOpen ? {
-                x: [0, 15, 30, 50],
-                y: [0, Math.random() * 20 - 10, Math.random() * 30 - 15],
-                opacity: [1, 0.8, 0.3, 0],
-                scale: [1, 1.5, 2, 0]
-              } : {
-                x: [0, 8, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1.2, 0]
-              }}
-              transition={{
-                duration: isOpen ? 3 : 2.5,
-                repeat: isOpen ? 0 : Infinity,
-                delay: i * 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            />
-          ))}
         </div>
       </motion.div>
     </>
