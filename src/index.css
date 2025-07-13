@@ -6,27 +6,27 @@
 
 @layer base {
   :root {
-    /* Navy Blue Dominant Theme */
-    --background: 220 40% 5%;         /* Very dark navy background */
-    --foreground: 210 20% 92%;        /* Light text */
+    /* Bright Navy Blue Dominant Theme */
+    --background: 220 45% 8%;         /* Brighter dark navy background */
+    --foreground: 210 25% 95%;        /* Brighter light text */
 
-    --card: 220 35% 8%;               /* Dark navy card */
-    --card-foreground: 210 20% 90%;
+    --card: 220 40% 12%;              /* Brighter dark navy card */
+    --card-foreground: 210 25% 92%;
 
-    --popover: 220 35% 8%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 220 40% 12%;
+    --popover-foreground: 210 25% 92%;
 
-    --primary: 220 60% 25%;           /* Navy blue primary */
-    --primary-foreground: 210 20% 92%;
+    --primary: 220 75% 45%;           /* Bright electric navy blue primary */
+    --primary-foreground: 210 25% 95%;
 
-    --secondary: 220 40% 12%;         /* Medium navy */
-    --secondary-foreground: 210 20% 88%;
+    --secondary: 220 45% 18%;         /* Bright medium navy */
+    --secondary-foreground: 210 25% 90%;
 
-    --muted: 220 35% 10%;             /* Muted navy */
-    --muted-foreground: 210 15% 65%;
+    --muted: 220 40% 15%;             /* Bright muted navy */
+    --muted-foreground: 210 20% 70%;
 
-    --accent: 220 50% 15%;            /* Navy accent */
-    --accent-foreground: 210 20% 85%;
+    --accent: 220 60% 25%;            /* Bright navy accent */
+    --accent-foreground: 210 25% 88%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
@@ -37,33 +37,33 @@
 
     --radius: 0.75rem;
 
-    /* Navy Blue Accent Colors */
-    --cyber-blue: 220 60% 35%;         /* Navy blue accent */
-    --cyber-green: 220 50% 40%;        /* Navy teal usage */
-    --cyber-purple: 220 55% 30%;       /* Deep navy */
+    /* Bright Electric Navy Blue Accent Colors */
+    --cyber-blue: 220 85% 55%;         /* Bright electric blue accent */
+    --cyber-green: 180 75% 50%;        /* Bright cyan/teal usage */
+    --cyber-purple: 250 80% 60%;       /* Bright electric purple */
     --cyber-red: 0 85% 50%;            /* Alert red */
     
-    /* Navy Blue Scale */
-    --gray-50: 220 40% 92%;
-    --gray-100: 220 40% 85%;
-    --gray-200: 220 40% 75%;
-    --gray-300: 220 40% 65%;
-    --gray-400: 220 40% 55%;
-    --gray-500: 220 40% 45%;
-    --gray-600: 220 50% 35%;
-    --gray-700: 220 55% 25%;
-    --gray-800: 220 60% 15%;
-    --gray-900: 220 65% 5%;
+    /* Bright Navy Blue Scale */
+    --gray-50: 220 45% 95%;
+    --gray-100: 220 45% 88%;
+    --gray-200: 220 45% 78%;
+    --gray-300: 220 45% 68%;
+    --gray-400: 220 45% 58%;
+    --gray-500: 220 45% 48%;
+    --gray-600: 220 55% 38%;
+    --gray-700: 220 65% 28%;
+    --gray-800: 220 70% 18%;
+    --gray-900: 220 75% 8%;
 
-    /* Navy Gradients */
-    --gradient-cyber: linear-gradient(135deg, hsl(220 60% 25%), hsl(220 50% 35%));
-    --gradient-dark: linear-gradient(135deg, hsl(var(--background)), hsl(220 40% 12%));
-    --gradient-glow: radial-gradient(circle, hsl(220 60% 25% / 0.3), transparent 70%);
+    /* Bright Navy Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(220 75% 45%), hsl(220 85% 55%));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--background)), hsl(220 45% 18%));
+    --gradient-glow: radial-gradient(circle, hsl(220 85% 55% / 0.4), transparent 70%);
 
-    /* Navy Shadows & Glows */
-    --shadow-cyber: 0 0 20px hsl(220 60% 25% / 0.5);
-    --shadow-green: 0 0 20px hsl(220 50% 35% / 0.5);
-    --shadow-elegant: 0 25px 50px -12px hsl(220 40% 4% / 0.8);
+    /* Bright Navy Shadows & Glows */
+    --shadow-cyber: 0 0 25px hsl(220 85% 55% / 0.6);
+    --shadow-green: 0 0 25px hsl(180 75% 50% / 0.6);
+    --shadow-elegant: 0 25px 50px -12px hsl(220 45% 8% / 0.8);
 
     /* Animations */
     --transition-cyber: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
