@@ -356,4 +356,19 @@
   .animate-curtain-right {
     animation: curtain-open-right 1.5s ease-in-out forwards;
   }
+
+  .cyber-card {
+    @apply bg-card/30 backdrop-blur-sm border border-gray-700 rounded-xl transition-all duration-300;
+    @apply hover:border-cyber-blue hover:shadow-cyber;
+  }
+
+  .cyber-button {
+    @apply bg-gradient-cyber hover:shadow-cyber text-background font-semibold;
+    @apply transition-all duration-300 hover:scale-105 animated-border;
+  }
+
+  .cyber-input {
+    @apply bg-background/50 border-gray-700 focus:border-cyber-blue;
+    @apply transition-all duration-300;
+  }
 }

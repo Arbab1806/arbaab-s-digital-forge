@@ -7,18 +7,20 @@ const CustomCursor = () => {
 
   useEffect(() => {
     const mouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
+      requestAnimationFrame(() => {
+        setMousePosition({
+          x: e.clientX,
+          y: e.clientY
+        });
       });
     };
 
     const mouseEnter = () => setCursorVariant('hover');
     const mouseLeave = () => setCursorVariant('default');
 
-    window.addEventListener('mousemove', mouseMove);
+    window.addEventListener('mousemove', mouseMove, { passive: true });
     
-    const interactiveElements = document.querySelectorAll('button, a, [role="button"]');
+    const interactiveElements = document.querySelectorAll('button, a, [role="button"], .cyber-card, .cyber-button, [data-clickable="true"]');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', mouseEnter);
       el.addEventListener('mouseleave', mouseLeave);

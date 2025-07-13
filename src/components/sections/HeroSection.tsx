@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, User, Code, Briefcase, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const scrollToNext = () => {
@@ -77,15 +78,49 @@ const HeroSection = () => {
             <span className="text-primary font-semibold">Remote Freelancer</span>
           </motion.p>
 
-          {/* CTA Button */}
+          {/* Navigation Buttons */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+          >
+            <Link to="/about">
+              <Button className="cyber-button w-full" data-clickable="true">
+                <User className="w-4 h-4 mr-2" />
+                About
+              </Button>
+            </Link>
+            <Link to="/skills">
+              <Button className="cyber-button w-full" data-clickable="true">
+                <Code className="w-4 h-4 mr-2" />
+                Skills
+              </Button>
+            </Link>
+            <Link to="/projects">
+              <Button className="cyber-button w-full" data-clickable="true">
+                <Briefcase className="w-4 h-4 mr-2" />
+                Projects
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button className="cyber-button w-full" data-clickable="true">
+                <Mail className="w-4 h-4 mr-2" />
+                Contact
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
           >
             <Button
               onClick={scrollToNext}
               className="bg-gradient-cyber hover:shadow-cyber text-background font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-500 hover:scale-105 animated-border"
+              data-clickable="true"
             >
               Explore My Work
               <motion.div
