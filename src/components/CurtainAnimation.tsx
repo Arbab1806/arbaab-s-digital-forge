@@ -42,7 +42,7 @@ const CurtainAnimation: React.FC<CurtainAnimationProps> = ({ isOpen, onComplete 
         }}
         initial={{ x: 0 }}
         animate={isOpen ? { 
-          x: '-45%',
+          x: '-100%',
           skewY: -2
         } : { x: 0 }}
         transition={{ 
@@ -103,7 +103,7 @@ const CurtainAnimation: React.FC<CurtainAnimationProps> = ({ isOpen, onComplete 
         }}
         initial={{ x: 0 }}
         animate={isOpen ? { 
-          x: '45%',
+          x: '100%',
           skewY: 2
         } : { x: 0 }}
         transition={{ 

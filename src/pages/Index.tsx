@@ -20,8 +20,8 @@ const Index = () => {
     return !sessionStorage.getItem('portfolioLoaded');
   });
   const [showCurtains, setShowCurtains] = useState(() => {
-    // If already loaded, skip to curtains
-    return !!sessionStorage.getItem('portfolioLoaded');
+    // If already loaded, skip curtains completely
+    return !sessionStorage.getItem('portfolioLoaded');
   });
   const [curtainsOpen, setCurtainsOpen] = useState(false);
   const [showContent, setShowContent] = useState(() => {
@@ -123,7 +123,7 @@ const Index = () => {
         )}
 
         {/* Curtain Animation */}
-        {showCurtains && !isLoading && (
+        {showCurtains && !isLoading && !showContent && (
           <CurtainAnimation
             key="curtains"
             isOpen={curtainsOpen}
