@@ -15,19 +15,31 @@ import ContactSection from '@/components/sections/ContactSection';
 import SocialSection from '@/components/sections/SocialSection';
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [showCurtains, setShowCurtains] = useState(false);
+  const [isLoading, setIsLoading] = useState(() => {
+    // Check if loading has already happened in this session
+    return !sessionStorage.getItem('portfolioLoaded');
+  });
+  const [showCurtains, setShowCurtains] = useState(() => {
+    // If already loaded, skip to curtains
+    return !!sessionStorage.getItem('portfolioLoaded');
+  });
   const [curtainsOpen, setCurtainsOpen] = useState(false);
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(() => {
+    // If already loaded, show content immediately
+    return !!sessionStorage.getItem('portfolioLoaded');
+  });
 
-  // Loading sequence
+  // Loading sequence (only on first visit)
   useEffect(() => {
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-      setShowCurtains(true);
-    }, 3000);
+    if (!sessionStorage.getItem('portfolioLoaded')) {
+      const loadingTimer = setTimeout(() => {
+        setIsLoading(false);
+        setShowCurtains(true);
+        sessionStorage.setItem('portfolioLoaded', 'true');
+      }, 3000);
 
-    return () => clearTimeout(loadingTimer);
+      return () => clearTimeout(loadingTimer);
+    }
   }, []);
 
   // Curtain sequence
