@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ArrowLeft, Mail, Phone, MapPin, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import CustomCursor from '@/components/CustomCursor';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -70,7 +71,9 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <CustomCursor />
+      <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="p-6">
         <Link to="/">
@@ -186,7 +189,7 @@ const Contact = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2">WhatsApp</label>
+                      <label className="block text-sm font-medium mb-2">WhatsApp (Optional)</label>
                       <Input
                         type="tel"
                         name="whatsapp"
@@ -250,7 +253,8 @@ const Contact = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -3,10 +3,13 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, User, Briefcase, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CustomCursor from '@/components/CustomCursor';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <CustomCursor />
+      <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="p-6">
         <Link to="/">
@@ -87,7 +90,8 @@ const About = () => {
           </motion.div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

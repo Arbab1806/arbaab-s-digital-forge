@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Shield, Terminal, Code, Globe, Award, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CustomCursor from '@/components/CustomCursor';
 
 const Skills = () => {
   const skillCategories = [
@@ -62,7 +63,9 @@ const Skills = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <CustomCursor />
+      <div className="min-h-screen bg-background text-foreground">
       {/* Navigation */}
       <nav className="p-6">
         <Link to="/">
@@ -138,7 +141,8 @@ const Skills = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
