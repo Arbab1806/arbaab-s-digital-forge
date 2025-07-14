@@ -1,10 +1,21 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, User, Code, Briefcase, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const roles = ['Freelancer', 'Penetration Tester', 'Web Developer'];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToNext = () => {
     const nextSection = document.getElementById('about');
     nextSection?.scrollIntoView({ behavior: 'smooth' });
@@ -65,18 +76,67 @@ const HeroSection = () => {
             <span className="text-foreground">HUSSAIN</span>
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
-            className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed"
+          {/* Animated Subtitle */}
+          <motion.div
+            className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed h-16 flex items-center justify-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            I'm a{' '}
-            <span className="text-cyber-blue font-semibold">Penetration Tester in Training</span>
-            {' '}&{' '}
-            <span className="text-primary font-semibold">Remote Freelancer</span>
-          </motion.p>
+            <span>I'm a </span>
+            <div className="relative ml-2 overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentRoleIndex}
+                  className="inline-block text-cyber-blue font-semibold relative"
+                  initial={{ 
+                    opacity: 0, 
+                    x: 50,
+                    rotateY: 90
+                  }}
+                  animate={{ 
+                    opacity: 1, 
+                    x: 0,
+                    rotateY: 0
+                  }}
+                  exit={{ 
+                    opacity: 0, 
+                    x: -50,
+                    rotateY: -90
+                  }}
+                  transition={{ 
+                    duration: 0.8,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {/* Blue shining line effect */}
+                  <motion.div
+                    className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-transparent via-cyber-blue to-transparent"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ 
+                      duration: 2, 
+                      ease: "easeInOut",
+                      delay: 0.3
+                    }}
+                  />
+                  <motion.div
+                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-gradient-to-r from-transparent via-cyber-blue to-transparent opacity-60"
+                    animate={{ 
+                      x: ["0%", "100%", "0%"],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  {roles[currentRoleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </motion.div>
 
           {/* Navigation Buttons */}
           <motion.div
