@@ -311,7 +311,7 @@ const SkillsSection = () => {
         </motion.div>
 
         {/* Skills categories with orb layout */}
-        <div className="space-y-24">
+        <div className="space-y-32">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={categoryIndex}
@@ -345,18 +345,19 @@ const SkillsSection = () => {
                 </div>
               </motion.div>
 
-              {/* Skills orbs grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-                {category.skills.map((skill, skillIndex) => (
-                  <SkillOrb
-                    key={skillIndex}
-                    skill={skill}
-                    index={categoryIndex * 10 + skillIndex}
-                    categoryIndex={categoryIndex}
-                    categoryColor={category.color}
-                  />
-                ))}
-              </div>
+        {/* Skills orbs grid with proper spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 justify-items-center px-8">
+          {category.skills.map((skill, skillIndex) => (
+            <div key={skillIndex} className="flex justify-center w-full">
+              <SkillOrb
+                skill={skill}
+                index={categoryIndex * 10 + skillIndex}
+                categoryIndex={categoryIndex}
+                categoryColor={category.color}
+              />
+            </div>
+          ))}
+        </div>
             </motion.div>
           ))}
         </div>

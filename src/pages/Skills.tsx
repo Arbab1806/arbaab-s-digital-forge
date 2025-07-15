@@ -1,66 +1,212 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Shield, Terminal, Code, Globe, Award, Target } from 'lucide-react';
+import { ArrowLeft, Shield, Terminal, Code, Globe, Award, Target, Zap, Lock, Eye, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CustomCursor from '@/components/CustomCursor';
 
 const Skills = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
   const skillCategories = [
     {
       title: "Cybersecurity & Penetration Testing",
       icon: Shield,
       description: "NAVTAC AI Course Graduate & Penetration Tester Learner",
+      color: "cyber-red",
       skills: [
-        "OWASP Top 10 Security Vulnerabilities",
-        "Cross-Site Scripting (XSS) Detection",
-        "SQL Injection Testing & Prevention",
-        "Web Application Penetration Testing",
-        "Vulnerability Assessment & Analysis",
-        "Network Security Analysis",
-        "AI Security Fundamentals (NAVTAC Certified)"
+        { name: "OWASP Top 10 Security Vulnerabilities", level: 75, icon: Target },
+        { name: "Cross-Site Scripting (XSS) Detection", level: 80, icon: Zap },
+        { name: "SQL Injection Testing & Prevention", level: 70, icon: Database },
+        { name: "Web Application Penetration Testing", level: 65, icon: Globe },
+        { name: "Vulnerability Assessment & Analysis", level: 72, icon: Eye },
+        { name: "Network Security Analysis", level: 68, icon: Shield },
+        { name: "AI Security Fundamentals (NAVTAC Certified)", level: 85, icon: Lock }
       ]
     },
     {
       title: "Technical Skills",
       icon: Terminal,
       description: "System Administration & Development",
+      color: "cyber-blue",
       skills: [
-        "Linux System Administration",
-        "Network Protocols & Security",
-        "Burp Suite, Nmap, Metasploit",
-        "Python Security Scripting",
-        "Web Technologies (HTML, CSS, JS)",
-        "React & TypeScript Development"
+        { name: "Linux System Administration", level: 75, icon: Terminal },
+        { name: "Network Protocols & Security", level: 70, icon: Globe },
+        { name: "Burp Suite, Nmap, Metasploit", level: 68, icon: Shield },
+        { name: "Python Security Scripting", level: 72, icon: Code },
+        { name: "Web Technologies (HTML, CSS, JS)", level: 85, icon: Globe },
+        { name: "React & TypeScript Development", level: 88, icon: Code }
       ]
     },
     {
       title: "Professional Services",
       icon: Code,
       description: "Freelance & Client Work",
+      color: "cyber-purple",
       skills: [
-        "Excel VBA Automation",
-        "Data Processing & Analysis",
-        "Remote Collaboration",
-        "Client Communication",
-        "Project Management",
-        "Quality Assurance"
+        { name: "Excel VBA Automation", level: 90, icon: Terminal },
+        { name: "Data Processing & Analysis", level: 95, icon: Database },
+        { name: "Remote Collaboration", level: 92, icon: Globe },
+        { name: "Client Communication", level: 88, icon: Target },
+        { name: "Project Management", level: 85, icon: Shield },
+        { name: "Quality Assurance", level: 90, icon: Eye }
       ]
     },
     {
       title: "Certifications & Learning",
       icon: Award,
       description: "Continuous Education & Growth",
+      color: "cyber-green",
       skills: [
-        "NAVTAC AI Course Certification",
-        "Penetration Testing Training",
-        "BS IT Student (Ongoing)",
-        "Cybersecurity Bootcamps",
-        "Online Security Courses",
-        "Industry Best Practices"
+        { name: "NAVTAC AI Course Certification", level: 100, icon: Award },
+        { name: "Penetration Testing Training", level: 70, icon: Shield },
+        { name: "BS IT Student (Ongoing)", level: 60, icon: Code },
+        { name: "Cybersecurity Bootcamps", level: 75, icon: Lock },
+        { name: "Online Security Courses", level: 80, icon: Globe },
+        { name: "Industry Best Practices", level: 85, icon: Target }
       ]
     }
   ];
+
+  const Skill3DCard = ({ skill, index, categoryColor, delay }) => {
+    const isHovered = hoveredCard === index;
+    
+    return (
+      <motion.div
+        className="relative group perspective-1000"
+        initial={{ opacity: 0, rotateX: -90, z: -100 }}
+        animate={{ opacity: 1, rotateX: 0, z: 0 }}
+        transition={{ 
+          duration: 0.8, 
+          delay: delay,
+          type: "spring",
+          stiffness: 100
+        }}
+        onHoverStart={() => setHoveredCard(index)}
+        onHoverEnd={() => setHoveredCard(null)}
+        whileHover={{ 
+          scale: 1.05,
+          rotateY: 5,
+          z: 50
+        }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Glowing background effect */}
+        <motion.div
+          className={`absolute -inset-2 bg-gradient-to-r from-${categoryColor}/20 to-transparent rounded-xl blur-lg`}
+          animate={isHovered ? {
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.6, 0.2]
+          } : {}}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+        
+        {/* Main card */}
+        <motion.div
+          className={`relative bg-card/40 backdrop-blur-sm border border-${categoryColor}/30 rounded-xl p-6 transition-all duration-500 group-hover:border-${categoryColor} group-hover:shadow-xl group-hover:shadow-${categoryColor}/25`}
+          style={{ transformStyle: 'preserve-3d' }}
+        >
+          {/* Floating icon */}
+          <motion.div
+            className={`w-16 h-16 mx-auto mb-4 bg-${categoryColor}/20 rounded-full flex items-center justify-center border border-${categoryColor}/40`}
+            animate={isHovered ? {
+              rotateY: [0, 360],
+              scale: [1, 1.2, 1]
+            } : {
+              rotateY: [0, 10, -10, 0]
+            }}
+            transition={{ 
+              duration: isHovered ? 1 : 4, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <skill.icon className={`w-8 h-8 text-${categoryColor}`} />
+          </motion.div>
+
+          {/* Skill name with typewriter effect */}
+          <motion.h4 
+            className={`text-lg font-bold text-center mb-3 text-${categoryColor} group-hover:text-white transition-colors`}
+            animate={isHovered ? {
+              textShadow: [
+                "0 0 10px hsl(var(--cyber-blue))",
+                "0 0 20px hsl(var(--cyber-blue))",
+                "0 0 10px hsl(var(--cyber-blue))"
+              ]
+            } : {}}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            {skill.name}
+          </motion.h4>
+
+          {/* 3D Progress bar */}
+          <div className="relative mb-4">
+            <div className="w-full bg-muted/30 rounded-full h-3 overflow-hidden">
+              <motion.div
+                className={`h-full bg-gradient-to-r from-${categoryColor} to-${categoryColor}/60 rounded-full relative`}
+                initial={{ width: 0 }}
+                animate={{ width: `${skill.level}%` }}
+                transition={{ duration: 1.5, delay: delay + 0.5 }}
+              >
+                {/* Glowing effect on progress */}
+                <motion.div
+                  className={`absolute inset-0 bg-${categoryColor}/50 rounded-full`}
+                  animate={{
+                    boxShadow: [
+                      `0 0 10px hsl(var(--${categoryColor}) / 0.5)`,
+                      `0 0 20px hsl(var(--${categoryColor}) / 0.8)`,
+                      `0 0 10px hsl(var(--${categoryColor}) / 0.5)`
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </motion.div>
+            </div>
+            
+            {/* Percentage display */}
+            <motion.div
+              className={`absolute right-0 -top-8 text-sm font-bold text-${categoryColor}`}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: delay + 1 }}
+            >
+              {skill.level}%
+            </motion.div>
+          </div>
+
+          {/* Particle effect on hover */}
+          <AnimatePresence>
+            {isHovered && (
+              <div className="absolute inset-0 pointer-events-none">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className={`absolute w-2 h-2 bg-${categoryColor} rounded-full`}
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      opacity: [0, 1, 0],
+                      y: [0, -50],
+                      x: [0, Math.random() * 40 - 20]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.2
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </motion.div>
+    );
+  };
 
   return (
     <>
@@ -109,33 +255,61 @@ const Skills = () => {
             </p>
           </motion.div>
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {skillCategories.map((category, index) => (
+          {/* Skills Categories with 3D Cards */}
+          <div className="space-y-16">
+            {skillCategories.map((category, categoryIndex) => (
               <motion.div
-                key={index}
-                className="cyber-card p-6"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3 }}
-                whileHover={{ scale: 1.02 }}
+                key={categoryIndex}
+                initial={{ opacity: 0, x: categoryIndex % 2 === 0 ? -100 : 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: categoryIndex * 0.2 }}
+                className="relative"
               >
-                <div className="flex items-center mb-4">
-                  <category.icon className="w-8 h-8 text-cyber-blue mr-3" />
-                  <div>
-                    <h3 className="text-xl font-bold">{category.title}</h3>
-                    <p className="text-sm text-gray-400">{category.description}</p>
+                {/* Category Header with 3D effect */}
+                <motion.div 
+                  className="text-center mb-12"
+                  whileHover={{ scale: 1.05, rotateX: 5 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="flex items-center justify-center mb-6">
+                    <motion.div
+                      className={`p-4 rounded-full bg-${category.color}/20 border border-${category.color}/30 mr-4`}
+                      animate={{
+                        boxShadow: [
+                          `0 0 20px hsl(var(--${category.color}) / 0.3)`,
+                          `0 0 40px hsl(var(--${category.color}) / 0.6)`,
+                          `0 0 20px hsl(var(--${category.color}) / 0.3)`
+                        ],
+                        rotateY: [0, 360]
+                      }}
+                      transition={{ 
+                        boxShadow: { duration: 2, repeat: Infinity },
+                        rotateY: { duration: 8, repeat: Infinity, ease: "linear" }
+                      }}
+                    >
+                      <category.icon className={`w-8 h-8 text-${category.color}`} />
+                    </motion.div>
+                    <div>
+                      <h3 className={`text-3xl font-bold text-${category.color} mb-2`}>
+                        {category.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{category.description}</p>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
 
-                <ul className="space-y-3">
+                {/* 3D Skills Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {category.skills.map((skill, skillIndex) => (
-                    <li key={skillIndex} className="flex items-center text-gray-300">
-                      <div className="w-2 h-2 bg-cyber-blue rounded-full mr-3 flex-shrink-0"></div>
-                      {skill}
-                    </li>
+                    <Skill3DCard
+                      key={skillIndex}
+                      skill={skill}
+                      index={categoryIndex * 100 + skillIndex}
+                      categoryColor={category.color}
+                      delay={categoryIndex * 0.1 + skillIndex * 0.1}
+                    />
                   ))}
-                </ul>
+                </div>
               </motion.div>
             ))}
           </div>
