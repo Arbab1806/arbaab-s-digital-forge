@@ -69,140 +69,63 @@ const Skills = () => {
   ];
 
   const Skill3DCard = ({ skill, index, categoryColor, delay }) => {
-    const isHovered = hoveredCard === index;
+    const [isClicked, setIsClicked] = useState(false);
     
     return (
       <motion.div
-        className="relative group perspective-1000"
-        initial={{ opacity: 0, rotateX: -90, z: -100 }}
-        animate={{ opacity: 1, rotateX: 0, z: 0 }}
+        className="relative group cursor-pointer"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 0.8, 
-          delay: delay,
-          type: "spring",
-          stiffness: 100
+          duration: 0.5, 
+          delay: delay
         }}
-        onHoverStart={() => setHoveredCard(index)}
-        onHoverEnd={() => setHoveredCard(null)}
         whileHover={{ 
           scale: 1.05,
-          rotateY: 5,
-          z: 50
+          rotateY: 10,
+          rotateX: 10
+        }}
+        onClick={() => {
+          setIsClicked(true);
+          setTimeout(() => setIsClicked(false), 300);
         }}
         style={{ transformStyle: 'preserve-3d' }}
-      >
-        {/* Glowing background effect */}
-        <motion.div
-          className={`absolute -inset-2 bg-gradient-to-r from-${categoryColor}/20 to-transparent rounded-xl blur-lg`}
-          animate={isHovered ? {
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.6, 0.2]
-          } : {}}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        
+      >        
         {/* Main card */}
         <motion.div
-          className={`relative bg-card/40 backdrop-blur-sm border border-${categoryColor}/30 rounded-xl p-6 transition-all duration-500 group-hover:border-${categoryColor} group-hover:shadow-xl group-hover:shadow-${categoryColor}/25`}
-          style={{ transformStyle: 'preserve-3d' }}
+          className={`relative bg-card/40 backdrop-blur-sm border border-${categoryColor}/30 rounded-xl p-6 transition-all duration-300 hover:border-${categoryColor} hover:shadow-xl hover:shadow-${categoryColor}/25`}
+          animate={isClicked ? {
+            scale: [1, 0.95, 1.05, 1],
+            rotateZ: [0, -2, 2, 0]
+          } : {}}
+          transition={{ duration: 0.3 }}
         >
-          {/* Floating icon */}
-          <motion.div
-            className={`w-16 h-16 mx-auto mb-4 bg-${categoryColor}/20 rounded-full flex items-center justify-center border border-${categoryColor}/40`}
-            animate={isHovered ? {
-              rotateY: [0, 360],
-              scale: [1, 1.2, 1]
-            } : {
-              rotateY: [0, 10, -10, 0]
-            }}
-            transition={{ 
-              duration: isHovered ? 1 : 4, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
+          {/* Icon */}
+          <div className={`w-16 h-16 mx-auto mb-4 bg-${categoryColor}/20 rounded-full flex items-center justify-center border border-${categoryColor}/40`}>
             <skill.icon className={`w-8 h-8 text-${categoryColor}`} />
-          </motion.div>
+          </div>
 
-          {/* Skill name with typewriter effect */}
-          <motion.h4 
-            className={`text-lg font-bold text-center mb-3 text-${categoryColor} group-hover:text-white transition-colors`}
-            animate={isHovered ? {
-              textShadow: [
-                "0 0 10px hsl(var(--cyber-blue))",
-                "0 0 20px hsl(var(--cyber-blue))",
-                "0 0 10px hsl(var(--cyber-blue))"
-              ]
-            } : {}}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          >
+          {/* Skill name */}
+          <h4 className={`text-lg font-bold text-center mb-3 text-${categoryColor}`}>
             {skill.name}
-          </motion.h4>
+          </h4>
 
-          {/* 3D Progress bar */}
+          {/* Progress bar */}
           <div className="relative mb-4">
             <div className="w-full bg-muted/30 rounded-full h-3 overflow-hidden">
               <motion.div
-                className={`h-full bg-gradient-to-r from-${categoryColor} to-${categoryColor}/60 rounded-full relative`}
+                className={`h-full bg-gradient-to-r from-${categoryColor} to-${categoryColor}/60 rounded-full`}
                 initial={{ width: 0 }}
                 animate={{ width: `${skill.level}%` }}
-                transition={{ duration: 1.5, delay: delay + 0.5 }}
-              >
-                {/* Glowing effect on progress */}
-                <motion.div
-                  className={`absolute inset-0 bg-${categoryColor}/50 rounded-full`}
-                  animate={{
-                    boxShadow: [
-                      `0 0 10px hsl(var(--${categoryColor}) / 0.5)`,
-                      `0 0 20px hsl(var(--${categoryColor}) / 0.8)`,
-                      `0 0 10px hsl(var(--${categoryColor}) / 0.5)`
-                    ]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.div>
+                transition={{ duration: 1.5, delay: delay + 0.3 }}
+              />
             </div>
             
             {/* Percentage display */}
-            <motion.div
-              className={`absolute right-0 -top-8 text-sm font-bold text-${categoryColor}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: delay + 1 }}
-            >
+            <div className={`absolute right-0 -top-8 text-sm font-bold text-${categoryColor}`}>
               {skill.level}%
-            </motion.div>
+            </div>
           </div>
-
-          {/* Particle effect on hover */}
-          <AnimatePresence>
-            {isHovered && (
-              <div className="absolute inset-0 pointer-events-none">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className={`absolute w-2 h-2 bg-${categoryColor} rounded-full`}
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                      y: [0, -50],
-                      x: [0, Math.random() * 40 - 20]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.2
-                    }}
-                  />
-                ))}
-              </div>
-            )}
-          </AnimatePresence>
         </motion.div>
       </motion.div>
     );
