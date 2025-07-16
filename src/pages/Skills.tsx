@@ -85,6 +85,8 @@ const Skills = () => {
           rotateY: 25,
           rotateX: 25
         }}
+        onHoverStart={() => setHoveredCard(index)}
+        onHoverEnd={() => setHoveredCard(null)}
         onClick={() => {
           setIsClicked(true);
           setTimeout(() => setIsClicked(false), 300);
@@ -93,7 +95,11 @@ const Skills = () => {
       >        
         {/* Main card */}
         <motion.div
-          className={`relative bg-card/40 backdrop-blur-sm border border-${categoryColor}/30 rounded-xl p-6 transition-all duration-300 hover:border-${categoryColor} hover:shadow-xl hover:shadow-${categoryColor}/25`}
+          className={`relative bg-card/40 backdrop-blur-sm border rounded-xl p-6 transition-all duration-100 ${
+            hoveredCard === index 
+              ? `border-${categoryColor} shadow-xl shadow-${categoryColor}/50 shadow-[0_0_30px_hsl(var(--${categoryColor})/0.6)]`
+              : `border-${categoryColor}/30 hover:border-${categoryColor} hover:shadow-xl hover:shadow-${categoryColor}/25`
+          }`}
           animate={isClicked ? {
             scale: [1, 0.95, 1.05, 1],
             rotateZ: [0, -2, 2, 0],
