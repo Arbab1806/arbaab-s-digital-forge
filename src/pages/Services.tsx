@@ -20,6 +20,7 @@ import {
   Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CustomCursor from '@/components/CustomCursor';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -275,7 +276,9 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <CustomCursor />
+      <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <section className="py-20 text-center relative overflow-hidden">
         <div className="cyber-grid opacity-30" />
@@ -618,7 +621,8 @@ const Services = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

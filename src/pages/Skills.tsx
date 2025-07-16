@@ -82,8 +82,8 @@ const Skills = () => {
         }}
         whileHover={{ 
           scale: 1.05,
-          rotateY: 10,
-          rotateX: 10
+          rotateY: 20,
+          rotateX: 20
         }}
         onClick={() => {
           setIsClicked(true);
@@ -96,7 +96,13 @@ const Skills = () => {
           className={`relative bg-card/40 backdrop-blur-sm border border-${categoryColor}/30 rounded-xl p-6 transition-all duration-300 hover:border-${categoryColor} hover:shadow-xl hover:shadow-${categoryColor}/25`}
           animate={isClicked ? {
             scale: [1, 0.95, 1.05, 1],
-            rotateZ: [0, -2, 2, 0]
+            rotateZ: [0, -2, 2, 0],
+            boxShadow: [
+              `0 0 20px hsl(var(--${categoryColor}) / 0.3)`,
+              `0 0 40px hsl(var(--${categoryColor}) / 0.8)`,
+              `0 0 60px hsl(var(--${categoryColor}) / 1)`,
+              `0 0 20px hsl(var(--${categoryColor}) / 0.3)`
+            ]
           } : {}}
           transition={{ duration: 0.3 }}
         >

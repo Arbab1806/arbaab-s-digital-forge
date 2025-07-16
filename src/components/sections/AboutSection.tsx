@@ -10,6 +10,7 @@ const AboutSection = () => {
     threshold: 0.3,
     triggerOnce: true
   });
+  const [clickedCard, setClickedCard] = React.useState<number | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -95,9 +96,33 @@ const AboutSection = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group"
+              className="group cursor-pointer"
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 25,
+                rotateX: 25
+              }}
+              onClick={() => {
+                setClickedCard(index);
+                setTimeout(() => setClickedCard(null), 300);
+              }}
+              style={{ transformStyle: 'preserve-3d' }}
+              data-clickable="true"
             >
-              <Card className="p-6 bg-card/50 backdrop-blur-sm border-gray-700 hover:border-cyber-blue transition-all duration-500 animated-border h-full">
+              <motion.div
+                className="p-6 bg-card/50 backdrop-blur-sm border-gray-700 hover:border-cyber-blue transition-all duration-500 animated-border h-full rounded-lg border"
+                animate={clickedCard === index ? {
+                  scale: [1, 0.95, 1.05, 1],
+                  rotateZ: [0, -2, 2, 0],
+                  boxShadow: [
+                    `0 0 20px hsl(var(--cyber-blue) / 0.3)`,
+                    `0 0 40px hsl(var(--cyber-blue) / 0.8)`,
+                    `0 0 60px hsl(var(--cyber-blue) / 1)`,
+                    `0 0 20px hsl(var(--cyber-blue) / 0.3)`
+                  ]
+                } : {}}
+                transition={{ duration: 0.3 }}
+              >
                 <div className="flex items-start space-x-4">
                   <motion.div
                     className={`p-3 rounded-xl bg-${achievement.color}/20 border border-${achievement.color}/30`}
@@ -120,7 +145,7 @@ const AboutSection = () => {
                     </p>
                   </div>
                 </div>
-              </Card>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
