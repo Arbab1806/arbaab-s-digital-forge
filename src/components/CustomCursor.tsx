@@ -44,7 +44,7 @@ const CustomCursor = () => {
     hover: {
       x: mousePosition.x - 20,
       y: mousePosition.y - 20,
-      scale: 1.3,
+      scale: 2,
     }
   };
 
@@ -54,9 +54,10 @@ const CustomCursor = () => {
       variants={variants}
       animate={cursorVariant}
       transition={{
-        type: "tween",
-        duration: 0,
-        ease: "linear"
+        type: "spring",
+        damping: 30,
+        stiffness: 400,
+        mass: 0.5
       }}
     >
       <div className="relative w-8 h-8">
@@ -74,15 +75,20 @@ const CustomCursor = () => {
           ⚡
         </motion.div>
         
-        {/* Glow effect */}
+        {/* Gradient glow effect */}
         <motion.div
-          className="absolute inset-0 rounded-full bg-gray-500 opacity-30 blur-sm"
+          className="absolute inset-0 rounded-full opacity-50 blur-sm"
+          style={{
+            background: 'linear-gradient(45deg, #00f5ff, #ff00ff)',
+            width: '20px',
+            height: '20px'
+          }}
           animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.6, 0.3]
+            scale: [1, 1.3, 1],
+            opacity: [0.5, 0.8, 0.5]
           }}
           transition={{
-            duration: 2,
+            duration: 1.5,
             repeat: Infinity,
             ease: "easeInOut"
           }}

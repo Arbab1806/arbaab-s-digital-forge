@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, User, Code, Briefcase, Mail } from 'lucide-react';
+import { ChevronDown, User, Code, Briefcase, Mail, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
@@ -143,7 +143,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+            className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8"
           >
             <Link to="/about">
               <Button className="cyber-button w-full" data-clickable="true">
@@ -155,6 +155,12 @@ const HeroSection = () => {
               <Button className="cyber-button w-full" data-clickable="true">
                 <Code className="w-4 h-4 mr-2" />
                 Skills
+              </Button>
+            </Link>
+            <Link to="/services">
+              <Button className="cyber-button w-full" data-clickable="true">
+                <Settings className="w-4 h-4 mr-2" />
+                Services
               </Button>
             </Link>
             <Link to="/projects">
