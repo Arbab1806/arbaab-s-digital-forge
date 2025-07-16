@@ -82,8 +82,8 @@ const Skills = () => {
         }}
         whileHover={{ 
           scale: 1.05,
-          rotateY: 20,
-          rotateX: 20
+          rotateY: 25,
+          rotateX: 25
         }}
         onClick={() => {
           setIsClicked(true);
