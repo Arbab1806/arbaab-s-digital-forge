@@ -68,54 +68,68 @@ const Projects = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={index}
-                className="cyber-card p-6"
+                className="flip-card h-80"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.2 }}
-                whileHover={{ scale: 1.02 }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center">
-                    <project.icon className="w-8 h-8 text-cyber-blue mr-3" />
-                    <div>
-                      <h3 className="text-xl font-bold">{project.title}</h3>
-                      <span className={`text-sm px-2 py-1 rounded ${
-                        project.status === 'Completed' ? 'bg-green-500/20 text-green-400' :
-                        project.status === 'Active' ? 'bg-blue-500/20 text-blue-400' :
-                        'bg-yellow-500/20 text-yellow-400'
-                      }`}>
-                        {project.status}
-                      </span>
+                <div className="flip-card-inner">
+                  {/* Back Side - Clean and Minimal */}
+                  <div className="flip-card-back">
+                    <div className="w-full h-full bg-gradient-to-br from-gray-800/50 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 rounded-lg flex items-center justify-center">
+                      <project.icon className="w-16 h-16 text-gray-600 opacity-30" />
                     </div>
                   </div>
-                </div>
+                  
+                  {/* Front Side - Project Details */}
+                  <div className="flip-card-front">
+                    <div className="cyber-card p-6 h-full flex flex-col">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center">
+                          <project.icon className="w-8 h-8 text-cyber-blue mr-3" />
+                          <div>
+                            <h3 className="text-xl font-bold">{project.title}</h3>
+                            <span className={`text-sm px-2 py-1 rounded ${
+                              project.status === 'Completed' ? 'bg-green-500/20 text-green-400' :
+                              project.status === 'Active' ? 'bg-blue-500/20 text-blue-400' :
+                              'bg-yellow-500/20 text-yellow-400'
+                            }`}>
+                              {project.status}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
 
-                <p className="text-gray-300 mb-4">{project.description}</p>
+                      <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-cyber-blue/20 text-cyber-blue rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tech.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-3 py-1 bg-cyber-blue/20 text-cyber-blue rounded-full text-sm"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
 
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="cyber-button">
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
-                  </Button>
-                  <Button variant="outline" size="sm" className="cyber-button">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Demo
-                  </Button>
+                      <div className="flex gap-3 mt-auto">
+                        <Button variant="outline" size="sm" className="cyber-button">
+                          <Github className="w-4 h-4 mr-2" />
+                          Code
+                        </Button>
+                        <Button variant="outline" size="sm" className="cyber-button">
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Demo
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </motion.div>
       </div>
       </div>
