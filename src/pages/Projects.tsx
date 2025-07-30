@@ -114,11 +114,21 @@ const Projects = () => {
                       </div>
 
                       <div className="flex gap-3 mt-auto">
-                        <Button variant="outline" size="sm" className="cyber-button">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="cyber-button"
+                          onClick={() => window.open('https://github.com', '_blank')}
+                        >
                           <Github className="w-4 h-4 mr-2" />
                           Code
                         </Button>
-                        <Button variant="outline" size="sm" className="cyber-button">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="cyber-button"
+                          onClick={() => window.open('#', '_blank')}
+                        >
                           <ExternalLink className="w-4 h-4 mr-2" />
                           Demo
                         </Button>

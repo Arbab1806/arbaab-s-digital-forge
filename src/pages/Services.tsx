@@ -22,9 +22,17 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CustomCursor from '@/components/CustomCursor';
+import ContactModal from '@/components/ContactModal';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
+
+  const handleGetStarted = (packageName: string) => {
+    setSelectedPackage(packageName);
+    setIsContactModalOpen(true);
+  };
 
   const services = [
     {
@@ -497,6 +505,7 @@ const Services = () => {
                 <Button
                   className={`w-full bg-gradient-to-r ${pkg.color} hover:shadow-lg`}
                   data-clickable="true"
+                  onClick={() => handleGetStarted(pkg.name)}
                 >
                   Get Started
                 </Button>
@@ -633,6 +642,15 @@ const Services = () => {
         </div>
       </section>
       </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => {
+          setIsContactModalOpen(false);
+          setSelectedPackage(null);
+        }}
+        selectedPackage={selectedPackage}
+      />
     </>
   );
 };
