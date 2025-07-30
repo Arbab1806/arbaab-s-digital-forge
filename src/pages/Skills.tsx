@@ -13,7 +13,12 @@ const Skills = () => {
       title: "Cybersecurity & Penetration Testing",
       icon: Shield,
       description: "NAVTAC AI Course Graduate & Penetration Tester Learner",
-      color: "cyber-red",
+      color: "white",
+      bgColor: "bg-white",
+      textColor: "text-white",
+      borderColor: "border-white",
+      fromColor: "from-white",
+      toColor: "to-white/60",
       skills: [
         { name: "OWASP Top 10 Security Vulnerabilities", level: 75, icon: Target },
         { name: "Cross-Site Scripting (XSS) Detection", level: 80, icon: Zap },
@@ -29,6 +34,11 @@ const Skills = () => {
       icon: Terminal,
       description: "System Administration & Development",
       color: "cyber-blue",
+      bgColor: "bg-cyber-blue",
+      textColor: "text-cyber-blue",
+      borderColor: "border-cyber-blue",
+      fromColor: "from-cyber-blue",
+      toColor: "to-cyber-blue/60",
       skills: [
         { name: "Linux System Administration", level: 75, icon: Terminal },
         { name: "Network Protocols & Security", level: 70, icon: Globe },
@@ -43,6 +53,11 @@ const Skills = () => {
       icon: Code,
       description: "Freelance & Client Work",
       color: "cyber-purple",
+      bgColor: "bg-cyber-purple",
+      textColor: "text-cyber-purple",
+      borderColor: "border-cyber-purple",
+      fromColor: "from-cyber-purple",
+      toColor: "to-cyber-purple/60",
       skills: [
         { name: "Excel VBA Automation", level: 90, icon: Terminal },
         { name: "Data Processing & Analysis", level: 95, icon: Database },
@@ -57,6 +72,11 @@ const Skills = () => {
       icon: Award,
       description: "Continuous Education & Growth",
       color: "cyber-green",
+      bgColor: "bg-cyber-green",
+      textColor: "text-cyber-green",
+      borderColor: "border-cyber-green",
+      fromColor: "from-cyber-green",
+      toColor: "to-cyber-green/60",
       skills: [
         { name: "NAVTAC AI Course Certification", level: 100, icon: Award },
         { name: "Penetration Testing Training", level: 70, icon: Shield },
@@ -68,7 +88,7 @@ const Skills = () => {
     }
   ];
 
-  const Skill3DCard = ({ skill, index, categoryColor, delay }) => {
+  const Skill3DCard = ({ skill, index, category, delay }) => {
     return (
       <div
         className="relative group cursor-pointer"
@@ -77,44 +97,44 @@ const Skills = () => {
       >        
         {/* Main card */}
         <div
-          className={`relative overflow-hidden rounded-xl p-6 border transition-all duration-300 ${
+          className={`relative overflow-hidden rounded-xl p-6 border transition-all duration-500 ${
             hoveredCard === index 
-              ? `bg-${categoryColor} border-${categoryColor}` 
-              : `bg-card/40 backdrop-blur-sm border-${categoryColor}/30`
+              ? `${category.bgColor} ${category.borderColor}` 
+              : `bg-card/40 backdrop-blur-sm ${category.borderColor}/30`
           }`}
         >
           {/* Icon */}
-          <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border transition-all duration-300 ${
+          <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border transition-all duration-500 ${
             hoveredCard === index 
-              ? `bg-${categoryColor} border-${categoryColor} opacity-0` 
-              : `bg-${categoryColor}/20 border-${categoryColor}/40 opacity-100`
+              ? `opacity-0` 
+              : `bg-${category.color}/20 border-${category.color}/40 opacity-100`
           }`}>
-            <skill.icon className={`w-8 h-8 transition-all duration-300 ${
-              hoveredCard === index ? `text-${categoryColor} opacity-0` : `text-${categoryColor} opacity-100`
+            <skill.icon className={`w-8 h-8 transition-all duration-500 ${
+              hoveredCard === index ? `opacity-0` : `${category.textColor} opacity-100`
             }`} />
           </div>
 
           {/* Skill name */}
-          <h4 className={`text-lg font-bold text-center mb-3 transition-all duration-300 ${
-            hoveredCard === index ? `text-${categoryColor} opacity-0` : `text-${categoryColor} opacity-100`
+          <h4 className={`text-lg font-bold text-center mb-3 transition-all duration-500 ${
+            hoveredCard === index ? `opacity-0` : `${category.textColor} opacity-100`
           }`}>
             {skill.name}
           </h4>
 
           {/* Progress bar */}
           <div className="relative mb-4">
-            <div className={`w-full bg-muted/30 rounded-full h-3 overflow-hidden transition-all duration-300 ${
+            <div className={`w-full bg-muted/30 rounded-full h-3 overflow-hidden transition-all duration-500 ${
               hoveredCard === index ? 'opacity-0' : 'opacity-100'
             }`}>
               <div
-                className={`h-full bg-gradient-to-r from-${categoryColor} to-${categoryColor}/60 rounded-full transition-all duration-1000`}
+                className={`h-full bg-gradient-to-r ${category.fromColor} ${category.toColor} rounded-full transition-all duration-1000`}
                 style={{ width: `${skill.level}%` }}
               />
             </div>
             
             {/* Percentage display */}
-            <div className={`absolute right-0 -top-8 text-sm font-bold transition-all duration-300 ${
-              hoveredCard === index ? `text-${categoryColor} opacity-0` : `text-${categoryColor} opacity-100`
+            <div className={`absolute right-0 -top-8 text-sm font-bold transition-all duration-500 ${
+              hoveredCard === index ? `opacity-0` : `${category.textColor} opacity-100`
             }`}>
               {skill.level}%
             </div>
@@ -191,22 +211,16 @@ const Skills = () => {
                     <motion.div
                       className={`p-4 rounded-full bg-${category.color}/20 border border-${category.color}/30 mr-4`}
                       animate={{
-                        boxShadow: [
-                          `0 0 20px hsl(var(--${category.color}) / 0.3)`,
-                          `0 0 40px hsl(var(--${category.color}) / 0.6)`,
-                          `0 0 20px hsl(var(--${category.color}) / 0.3)`
-                        ],
                         rotateY: [0, 360]
                       }}
                       transition={{ 
-                        boxShadow: { duration: 2, repeat: Infinity },
                         rotateY: { duration: 8, repeat: Infinity, ease: "linear" }
                       }}
                     >
-                      <category.icon className={`w-8 h-8 text-${category.color}`} />
+                      <category.icon className={`w-8 h-8 ${category.textColor}`} />
                     </motion.div>
                     <div>
-                      <h3 className={`text-3xl font-bold text-${category.color} mb-2`}>
+                      <h3 className={`text-3xl font-bold ${category.textColor} mb-2`}>
                         {category.title}
                       </h3>
                       <p className="text-sm text-muted-foreground">{category.description}</p>
@@ -221,7 +235,7 @@ const Skills = () => {
                       key={skillIndex}
                       skill={skill}
                       index={categoryIndex * 100 + skillIndex}
-                      categoryColor={category.color}
+                      category={category}
                       delay={categoryIndex * 0.1 + skillIndex * 0.1}
                     />
                   ))}
