@@ -71,7 +71,7 @@ const HeroSection = () => {
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            <span className="text-gradient-cyber">ARBAAB</span>
+            <span className="text-gradient-cyber">ARBAB</span>
             <br />
             <span className="text-foreground">HUSSAIN</span>
           </motion.h1>

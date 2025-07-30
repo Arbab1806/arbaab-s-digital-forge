@@ -133,7 +133,9 @@ const AboutSection = () => {
                     }}
                     transition={{ duration: 0.3 }}
                   >
-                    <achievement.icon className={`w-6 h-6 text-${achievement.color}`} />
+                    <achievement.icon 
+                      className={`w-6 h-6 text-${achievement.color} transition-transform duration-500 group-hover:rotate-180`} 
+                    />
                   </motion.div>
                   
                   <div className="flex-1">

@@ -36,7 +36,7 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: "WhatsApp",
-      value: "+92 370 7332494",
+      value: "03707332494",
       href: "https://wa.me/923707332494",
       color: "cyber-blue"
     },
