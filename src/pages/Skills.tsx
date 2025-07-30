@@ -80,45 +80,33 @@ const Skills = () => {
           duration: 0.5, 
           delay: delay
         }}
-        whileHover={{ 
-          scale: 1.05,
-          rotateY: 25,
-          rotateX: 25
-        }}
+        whileHover={{ scale: 1.02 }}
         onHoverStart={() => setHoveredCard(index)}
         onHoverEnd={() => setHoveredCard(null)}
-        onClick={() => {
-          setIsClicked(true);
-          setTimeout(() => setIsClicked(false), 300);
-        }}
-        style={{ transformStyle: 'preserve-3d' }}
       >        
         {/* Main card */}
         <motion.div
-          className={`relative bg-card/40 backdrop-blur-sm border rounded-xl p-6 transition-all duration-100 ${
+          className={`relative overflow-hidden rounded-xl p-6 transition-all duration-300 border ${
             hoveredCard === index 
-              ? `border-${categoryColor} shadow-xl shadow-${categoryColor}/50 shadow-[0_0_30px_hsl(var(--${categoryColor})/0.6)]`
-              : `border-${categoryColor}/30 hover:border-${categoryColor} hover:shadow-xl hover:shadow-${categoryColor}/25`
+              ? `bg-${categoryColor} border-${categoryColor}` 
+              : `bg-card/40 backdrop-blur-sm border-${categoryColor}/30`
           }`}
-          animate={isClicked ? {
-            scale: [1, 0.95, 1.05, 1],
-            rotateZ: [0, -2, 2, 0],
-            boxShadow: [
-              `0 0 20px hsl(var(--${categoryColor}) / 0.3)`,
-              `0 0 40px hsl(var(--${categoryColor}) / 0.8)`,
-              `0 0 60px hsl(var(--${categoryColor}) / 1)`,
-              `0 0 20px hsl(var(--${categoryColor}) / 0.3)`
-            ]
-          } : {}}
-          transition={{ duration: 0.3 }}
         >
           {/* Icon */}
-          <div className={`w-16 h-16 mx-auto mb-4 bg-${categoryColor}/20 rounded-full flex items-center justify-center border border-${categoryColor}/40`}>
-            <skill.icon className={`w-8 h-8 text-${categoryColor}`} />
+          <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border ${
+            hoveredCard === index 
+              ? `bg-white/20 border-white/40` 
+              : `bg-${categoryColor}/20 border-${categoryColor}/40`
+          }`}>
+            <skill.icon className={`w-8 h-8 ${
+              hoveredCard === index ? 'text-white' : `text-${categoryColor}`
+            }`} />
           </div>
 
           {/* Skill name */}
-          <h4 className={`text-lg font-bold text-center mb-3 text-${categoryColor}`}>
+          <h4 className={`text-lg font-bold text-center mb-3 ${
+            hoveredCard === index ? 'text-white' : `text-${categoryColor}`
+          }`}>
             {skill.name}
           </h4>
 
@@ -134,7 +122,9 @@ const Skills = () => {
             </div>
             
             {/* Percentage display */}
-            <div className={`absolute right-0 -top-8 text-sm font-bold text-${categoryColor}`}>
+            <div className={`absolute right-0 -top-8 text-sm font-bold ${
+              hoveredCard === index ? 'text-white' : `text-${categoryColor}`
+            }`}>
               {skill.level}%
             </div>
           </div>
