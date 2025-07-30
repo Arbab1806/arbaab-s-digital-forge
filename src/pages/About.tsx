@@ -28,7 +28,22 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-5xl font-bold text-gradient-cyber mb-8">About Me</h1>
+          <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+            <div className="flex-shrink-0">
+              <img 
+                src="/lovable-uploads/bba63060-9dcb-43a6-a163-2cee10a330e0.png" 
+                alt="Arbaab Hussain - Cybersecurity Professional" 
+                className="w-64 h-64 object-cover rounded-2xl border-2 border-cyber-blue/30 shadow-2xl"
+              />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-5xl font-bold text-gradient-cyber mb-6">About Me</h1>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                I'm Arbaab Hussain, a passionate BS IT student specializing in cybersecurity and penetration testing. 
+                My journey combines academic excellence with practical expertise in securing digital infrastructures.
+              </p>
+            </div>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <motion.div

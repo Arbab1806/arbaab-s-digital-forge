@@ -17,7 +17,8 @@ import {
   Zap,
   Globe,
   Eye,
-  Heart
+  Heart,
+  ArrowLeft
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CustomCursor from '@/components/CustomCursor';
@@ -279,6 +280,16 @@ const Services = () => {
     <>
       <CustomCursor />
       <div className="min-h-screen bg-background text-foreground">
+      {/* Navigation */}
+      <nav className="p-6">
+        <Link to="/">
+          <Button variant="outline" className="cyber-button">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Home
+          </Button>
+        </Link>
+      </nav>
+
       {/* Header */}
       <section className="py-20 text-center relative overflow-hidden">
         <div className="cyber-grid opacity-30" />
