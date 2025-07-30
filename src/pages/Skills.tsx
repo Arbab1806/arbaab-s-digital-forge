@@ -69,67 +69,58 @@ const Skills = () => {
   ];
 
   const Skill3DCard = ({ skill, index, categoryColor, delay }) => {
-    const [isClicked, setIsClicked] = useState(false);
-    
     return (
-      <motion.div
+      <div
         className="relative group cursor-pointer"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ 
-          duration: 0.5, 
-          delay: delay
-        }}
-        whileHover={{ scale: 1.02 }}
-        onHoverStart={() => setHoveredCard(index)}
-        onHoverEnd={() => setHoveredCard(null)}
+        onMouseEnter={() => setHoveredCard(index)}
+        onMouseLeave={() => setHoveredCard(null)}
       >        
         {/* Main card */}
-        <motion.div
-          className={`relative overflow-hidden rounded-xl p-6 transition-all duration-300 border ${
+        <div
+          className={`relative overflow-hidden rounded-xl p-6 border transition-all duration-300 ${
             hoveredCard === index 
               ? `bg-${categoryColor} border-${categoryColor}` 
               : `bg-card/40 backdrop-blur-sm border-${categoryColor}/30`
           }`}
         >
           {/* Icon */}
-          <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border ${
+          <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border transition-all duration-300 ${
             hoveredCard === index 
-              ? `bg-white/20 border-white/40` 
-              : `bg-${categoryColor}/20 border-${categoryColor}/40`
+              ? `bg-${categoryColor} border-${categoryColor} opacity-0` 
+              : `bg-${categoryColor}/20 border-${categoryColor}/40 opacity-100`
           }`}>
-            <skill.icon className={`w-8 h-8 ${
-              hoveredCard === index ? 'text-white' : `text-${categoryColor}`
+            <skill.icon className={`w-8 h-8 transition-all duration-300 ${
+              hoveredCard === index ? `text-${categoryColor} opacity-0` : `text-${categoryColor} opacity-100`
             }`} />
           </div>
 
           {/* Skill name */}
-          <h4 className={`text-lg font-bold text-center mb-3 ${
-            hoveredCard === index ? 'text-white' : `text-${categoryColor}`
+          <h4 className={`text-lg font-bold text-center mb-3 transition-all duration-300 ${
+            hoveredCard === index ? `text-${categoryColor} opacity-0` : `text-${categoryColor} opacity-100`
           }`}>
             {skill.name}
           </h4>
 
           {/* Progress bar */}
           <div className="relative mb-4">
-            <div className="w-full bg-muted/30 rounded-full h-3 overflow-hidden">
-              <motion.div
-                className={`h-full bg-gradient-to-r from-${categoryColor} to-${categoryColor}/60 rounded-full`}
-                initial={{ width: 0 }}
-                animate={{ width: `${skill.level}%` }}
-                transition={{ duration: 1.5, delay: delay + 0.3 }}
+            <div className={`w-full bg-muted/30 rounded-full h-3 overflow-hidden transition-all duration-300 ${
+              hoveredCard === index ? 'opacity-0' : 'opacity-100'
+            }`}>
+              <div
+                className={`h-full bg-gradient-to-r from-${categoryColor} to-${categoryColor}/60 rounded-full transition-all duration-1000`}
+                style={{ width: `${skill.level}%` }}
               />
             </div>
             
             {/* Percentage display */}
-            <div className={`absolute right-0 -top-8 text-sm font-bold ${
-              hoveredCard === index ? 'text-white' : `text-${categoryColor}`
+            <div className={`absolute right-0 -top-8 text-sm font-bold transition-all duration-300 ${
+              hoveredCard === index ? `text-${categoryColor} opacity-0` : `text-${categoryColor} opacity-100`
             }`}>
               {skill.level}%
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     );
   };
 
