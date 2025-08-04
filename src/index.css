@@ -212,6 +212,21 @@
     background: radial-gradient(circle at center, var(--skill-color, hsl(var(--primary))) 0%, var(--skill-color, hsl(var(--primary)))/0.8 70%, transparent 100%);
     background-size: 300% 300%;
     border-color: var(--skill-color, hsl(var(--primary)));
+  
+  /* Skills Page Radial Fill Animation */
+  .skill-radial-fill-page {
+    position: relative;
+    background: radial-gradient(circle at center, transparent 0%, transparent 100%);
+    background-size: 0% 0%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .skill-radial-fill-page:hover {
+    background: radial-gradient(circle at center, var(--skill-page-color, hsl(var(--primary))) 0%, var(--skill-page-color, hsl(var(--primary)))/0.8 70%, transparent 100%);
+    background-size: 300% 300%;
+    border-color: var(--skill-page-color, hsl(var(--primary)));
   }
 
   /* Custom Thunderbolt Cursor */

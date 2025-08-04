@@ -97,11 +97,12 @@ const Skills = () => {
       >        
         {/* Main card */}
         <div
-          className={`relative overflow-hidden rounded-xl p-6 border transition-all duration-500 ${
+          className={`relative overflow-hidden rounded-xl p-6 border transition-all duration-500 skill-radial-fill-page ${
             hoveredCard === index 
-              ? `${category.bgColor} ${category.borderColor}` 
-              : `bg-card/40 backdrop-blur-sm ${category.borderColor}/30`
+              ? `border-${category.color}` 
+              : `bg-card/40 backdrop-blur-sm border-${category.color}/30`
           }`}
+          style={{'--skill-page-color': `hsl(var(--${category.color}))`} as React.CSSProperties}
         >
           {/* Icon */}
           <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border transition-all duration-500 ${
