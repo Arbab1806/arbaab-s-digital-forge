@@ -198,30 +198,20 @@
 }
 
 @layer components {
-  /* Radial Fill Animation */
-  .radial-fill-container {
+  /* Skill Box Radial Fill Animation */
+  .skill-radial-fill {
     position: relative;
-  }
-
-  .radial-fill-container::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, var(--fill-color, hsl(var(--primary)))/0.1 0%, var(--fill-color, hsl(var(--primary)))/0.05 50%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, transparent 0%, transparent 100%);
+    background-size: 0% 0%;
+    background-repeat: no-repeat;
+    background-position: center;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    z-index: 1;
   }
 
-  .radial-fill-container:hover::before {
-    width: 300%;
-    height: 300%;
-    opacity: 1;
+  .skill-radial-fill:hover {
+    background: radial-gradient(circle at center, var(--skill-color, hsl(var(--primary))) 0%, var(--skill-color, hsl(var(--primary)))/0.8 70%, transparent 100%);
+    background-size: 300% 300%;
+    border-color: var(--skill-color, hsl(var(--primary)));
   }
 
   /* Custom Thunderbolt Cursor */
