@@ -59,17 +59,17 @@ const SkillsSection = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               className="group"
             >
-              <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 h-full hover:border-primary/30 transition-all duration-300 overflow-hidden relative">
-                <div className="flex items-center mb-4">
-                  <div className={`p-3 rounded-lg bg-${skill.color}/10 group-hover:bg-${skill.color}/20 transition-colors relative overflow-hidden radial-fill-container`} style={{'--fill-color': `hsl(var(--${skill.color}))`} as React.CSSProperties}>
-                    <skill.icon className={`w-6 h-6 text-${skill.color} relative z-10`} />
+              <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 h-full hover:border-primary/30 transition-all duration-300 overflow-hidden relative radial-fill-container" style={{'--fill-color': `hsl(var(--${skill.color}))`} as React.CSSProperties}>
+                <div className="flex items-center mb-4 relative z-10">
+                  <div className={`p-3 rounded-lg bg-${skill.color}/10 group-hover:bg-${skill.color}/20 transition-colors`}>
+                    <skill.icon className={`w-6 h-6 text-${skill.color}`} />
                   </div>
                   <h3 className="text-lg font-semibold ml-4 text-foreground">
                     {skill.name}
                   </h3>
                 </div>
                 
-                <div className="space-y-2">
+                <div className="space-y-2 relative z-10">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Proficiency</span>
                     <span className={`text-${skill.color} font-medium`}>{skill.level}%</span>
