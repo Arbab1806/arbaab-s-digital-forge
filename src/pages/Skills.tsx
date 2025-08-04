@@ -102,7 +102,7 @@ const Skills = () => {
               ? `border-${category.color}` 
               : `bg-card/40 backdrop-blur-sm border-${category.color}/30`
           }`}
-          style={{'--skill-page-color': `hsl(var(--${category.color}))`} as React.CSSProperties}
+          style={{'--skill-page-color': `${category.color === 'white' ? '255 255 255' : 'hsl(var(--'+category.color+'))'}`} as React.CSSProperties}
         >
           {/* Icon */}
           <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center border transition-all duration-500 ${
