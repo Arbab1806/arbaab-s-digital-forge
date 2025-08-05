@@ -225,9 +225,9 @@
   }
 
   .skill-radial-fill-page:hover {
-    background: radial-gradient(circle at center, rgb(var(--skill-page-color)) 0%, rgb(var(--skill-page-color) / 0.8) 70%, transparent 100%);
+    background: radial-gradient(circle at center, var(--skill-page-color) 0%, var(--skill-page-color)/0.8 70%, transparent 100%);
     background-size: 300% 300%;
-    border-color: rgb(var(--skill-page-color));
+    border-color: var(--skill-page-color);
   }
 
   /* Custom Thunderbolt Cursor */
