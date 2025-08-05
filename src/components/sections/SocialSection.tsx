@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Shield } from 'lucide-react';
 
 const SocialSection = () => {
   const [ref, inView] = useInView({
@@ -29,6 +29,15 @@ const SocialSection = () => {
       color: "cyber-purple",
       bgGradient: "from-cyber-purple/20 to-cyber-blue/20",
       stats: "Professional Network"
+    },
+    {
+      name: "TryHackMe",
+      icon: Shield,
+      url: "https://tryhackme.com/p/arbaab",
+      description: "Check out my cybersecurity challenges and ethical hacking journey",
+      color: "cyber-green",
+      bgGradient: "from-cyber-green/20 to-cyber-purple/20",
+      stats: "Security Expert"
     }
   ];
 
@@ -73,7 +82,7 @@ const SocialSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
         >
           {socialLinks.map((social, index) => (
             <motion.div
