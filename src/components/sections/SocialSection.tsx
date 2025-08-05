@@ -126,15 +126,16 @@ const SocialSection = () => {
 
                   <Button
                     asChild
-                    className={`w-full bg-${social.color}/10 border border-${social.color}/30 text-${social.color} hover:bg-${social.color}/20 hover:shadow-${social.color === 'cyber-blue' ? 'cyber' : 'cyber-green'}`}
+                    variant="outline"
+                    className="w-full border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
                   >
                     <a 
                       href={social.url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center"
+                      className="flex items-center justify-center gap-2 p-3 cursor-pointer"
                     >
-                      <ExternalLink className="w-4 h-4 mr-2" />
+                      <ExternalLink className="w-4 h-4" />
                       Connect on {social.name}
                     </a>
                   </Button>
