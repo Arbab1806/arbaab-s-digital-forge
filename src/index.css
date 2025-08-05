@@ -217,17 +217,18 @@
   /* Skills Page Radial Fill Animation */
   .skill-radial-fill-page {
     position: relative;
-    background: radial-gradient(circle at center, transparent 0%, transparent 100%);
-    background-size: 0% 0%;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
   }
 
   .skill-radial-fill-page:hover {
-    background: radial-gradient(circle at center, var(--skill-page-color) 0%, var(--skill-page-color)/0.8 70%, transparent 100%);
-    background-size: 300% 300%;
+    background: radial-gradient(circle at center, var(--skill-page-color) 0%, var(--skill-page-color)/0.6 50%, var(--skill-page-color)/0.3 70%, transparent 100%);
+    background-size: 200% 200%;
     border-color: var(--skill-page-color);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px var(--skill-page-color)/0.4;
   }
 
   /* Custom Thunderbolt Cursor */
