@@ -59,8 +59,8 @@ const Contact = () => {
     {
       icon: Phone,
       title: "WhatsApp",
-      value: "+92 300 1234567",
-      link: "https://wa.me/923001234567"
+      value: "+92 370 7332494",
+      link: "https://wa.me/923707332494"
     },
     {
       icon: MapPin,
