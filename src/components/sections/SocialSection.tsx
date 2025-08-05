@@ -124,21 +124,20 @@ const SocialSection = () => {
                     {social.description}
                   </p>
 
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                  <a 
+                    href={social.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block w-full"
                   >
-                    <a 
-                      href={social.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 p-3 cursor-pointer"
+                    <Button
+                      variant="outline"
+                      className="w-full border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4 mr-2" />
                       Connect on {social.name}
-                    </a>
-                  </Button>
+                    </Button>
+                  </a>
                 </div>
               </Card>
             </motion.div>
